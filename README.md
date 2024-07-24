@@ -15,8 +15,8 @@ This repo uses [`poetry`](https://python-poetry.org/docs) as package manager. </
 
 ## Usage
 
-- Change SFIA_SPREADSHEET and OUTPUT
-- run `poetry run python3 sfia_rdf/convert_sfia.py`
+- In `sfia_rdf/convert_sfia.py`, change SFIA_SPREADSHEET and OUTPUT to your needs
+- run it with `poetry run python3 sfia_rdf/convert_sfia.py`
 
 The output will be an RDF Turtle file.
 
