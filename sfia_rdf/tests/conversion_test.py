@@ -1,4 +1,5 @@
 import csv
+import os
 
 from rdflib import Graph
 
@@ -19,7 +20,7 @@ def test_bind_namespaces():
 def test_parse_row():
     g = Graph()
     namespaces.bind_namespaces(g)
-    with open("test_sfia-8_en_220221.csv") as csvfile:
+    with open(os.path.dirname(__file__) + "/test_sfia-8_en_220221.csv") as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             triples = sfia_parser.parse_row(row)
