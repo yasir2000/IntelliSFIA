@@ -8,9 +8,9 @@ from sfia_rdf import namespaces, sfia_parser
 SFIA_SPREADSHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-8_en_220221.csv"
 OUTPUT = os.path.expanduser('~') + "/Desktop/SFIA/SFIA.ttl"
 
-
 sfia_graph = Graph()
 namespaces.bind_namespaces(sfia_graph)
+sfia_graph.parse(f"{os.path.dirname(__file__)}/levels_of_responsibility.ttl")
 
 sfia_graph.update(""" 
 INSERT DATA {
