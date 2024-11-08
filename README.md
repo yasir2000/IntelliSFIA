@@ -6,7 +6,7 @@ The conversion is based on the model below.
 
 ## Python setup
 
-(Assuming you have `python3` on your system)
+(Assuming you have `python3` (3.11 or above) on your system)
 
 This repo uses [`poetry`](https://python-poetry.org/docs) as package manager. </br>
 
