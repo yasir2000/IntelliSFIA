@@ -1,7 +1,6 @@
-# SFIA in RDF
+# SFIA 9 in RDF
 
-This script converts in RDF the SFIA spreadsheet provided
-at https://sfia-online.org/en/sfia-8/documentation/sfia-skills-responsibilities-xls/view.
+This script converts in RDF the SFIA spreadsheet provided at https://sfia-online.org/en/sfia-9/documentation .
 The conversion is based on the model below.
 
 ## Python setup
