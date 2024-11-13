@@ -3,73 +3,129 @@ import os
 
 from rdflib import Graph
 
-from sfia_rdf import namespaces, sfia_parser
+from sfia_rdf import namespaces
+from sfia_rdf.parsers import skills_parser, levels_parser, attributes_parser
 
-SFIA_SPREADSHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-8_en_220221.csv"
+SFIA_SKILLS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_SKILLS.csv"
+SFIA_ATTRIBUTES_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_ATTRIBUTES.csv"
+SFIA_LEVELS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_LEVELS.csv"
+
 OUTPUT = os.path.expanduser('~') + "/Desktop/SFIA/SFIA.ttl"
 
 sfia_graph = Graph()
 namespaces.bind_namespaces(sfia_graph)
-sfia_graph.parse(f"{os.path.dirname(__file__)}/levels_of_responsibility.ttl")
 
 sfia_graph.update(""" 
 INSERT DATA {
+    
+    ##
+    ## Classes
+    ##
 
-    categories:CategoryScheme a skos:ConceptScheme;
-                rdfs:label "Categories Scheme"@en.
-    categories:Category rdfs:subClassOf skos:Concept;
+    sfia:CategoryScheme a skos:ConceptScheme;
+                rdfs:label "Scheme for the Skills' Categories"@en.
+                
+    sfia:Category rdfs:subClassOf skos:Concept;
                 skos:prefLabel "Category"@en.
 
-    skills:Skill a owl:Class;
+    sfia:LorScheme a skos:ConceptScheme;
+                rdfs:label "Scheme for the Levels of Responsibility"@en.
+                
+    sfia:Level a owl:Class;
+                owl:subClassOf skos:Concept;
+                rdfs:label "Level of Responsibility"@en.
+
+    sfia:Skill a owl:Class;
                 rdfs:label "Skill"@en.
 
-    skills:definedAtLevel a owl:ObjectProperty;
-                        rdfs:domain skills:Skill;
-                        rdfs:range skills_levels:SkillLevel;
-                        rdfs:label "defined at level"@en.
-    
-    skills:description a owl:AnnotationProperty;
-                    rdfs:domain skills:Skill;
-                    rdfs:label "has overall description"@en.
-    
-    skills:notes a owl:AnnotationProperty;
-                    rdfs:domain skills:Skill;
-                    rdfs:label "notes"@en.
-    
-    skills:category a owl:ObjectProperty;
-                    rdfs:domain skills:Skill;
-                    rdfs:range categories:Category;
-                    rdfs:label "has category"@en.
-    
-    skills_levels:SkillLevel a owl:Class;
+    sfia:SkillLevel a owl:Class;
                 rdfs:label "Skill Level"@en.
     
-    skills_levels:level a owl:ObjectProperty;
-                rdfs:domain skills_levels:SkillLevel;
-                rdfs:range levels:LevelOfResponsibility;
+
+    
+    ##
+    ## Object Properties
+    ##
+
+    sfia:skillCategory a owl:ObjectProperty;
+                    rdfs:domain sfia:Skill;
+                    rdfs:range sfia:Category;
+                    rdfs:label "has category"@en.
+    
+    sfia:definedAtLevel a owl:ObjectProperty;
+                        rdfs:domain sfia:Skill;
+                        rdfs:range sfia:SkillLevel;
+                        rdfs:label "defined at level"@en.
+    
+    sfia:skillLevel a owl:ObjectProperty;
+                rdfs:domain sfia:SkillLevel;
+                rdfs:range sfia:Level;
                 rdfs:label "has level"@en.
                 
-    skills_levels:notes a owl:AnnotationProperty;
-                rdfs:domain skills_levels:SkillLevel;
+    
+    ##
+    ## Annotation Properties
+    ##
+    
+    sfia:skillDescription a owl:AnnotationProperty;
+                    rdfs:domain sfia:Skill;
+                    rdfs:label "has overall description"@en.
+    
+    sfia:skillNotes a owl:AnnotationProperty;
+                    rdfs:domain sfia:Skill;
+                    rdfs:label "notes"@en.
+                     
+    sfia:skillLevelDescription a owl:AnnotationProperty;
+                rdfs:domain sfia:SkillLevel;
+                rdfs:label "has skill-level description"@en.
+    
+    sfia:attributeType a owl:AnnotationProperty;
+                rdfs:domain owl:AnnotationProperty;
+                rdfs:label "has attribute type"@en.
+                
+    sfia:attributeGuidanceNotes a owl:AnnotationProperty;
+                rdfs:domain owl:AnnotationProperty;
                 rdfs:label "has guidance notes"@en.
+    
+    sfia:levelGuidingPhrase a owl:AnnotationProperty;
+            rdfs:domain owl:Level;
+            rdfs:label "has guiding phrase"@en.
+    
+    sfia:levelEssence a owl:AnnotationProperty;
+            rdfs:domain owl:Level;
+            rdfs:label "essence of the level"@en.
+    
+    ###
+    ### Plus, every SFIA attribute becomes a property (AUTO, ADAP, COLL, COMM, etc.)
+    
 }
 """)
 
-with open(SFIA_SPREADSHEET) as csvfile:
+with open(SFIA_ATTRIBUTES_SHEET) as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
-        row_triples = sfia_parser.parse_row(row)
+        row_triples = attributes_parser.parse_row(row)
         [sfia_graph.add(triple) for triple in row_triples]
 
-query = """
-    INSERT {
-         categories:CategoryScheme skos:hasTopConcept ?concept.
-    }
-    WHERE {
-        ?concept a skos:Concept.
-        filter not exists { ?concept skos:broader ?broaderConcept. }
-    }
-"""
-sfia_graph.update(query)
+with open(SFIA_LEVELS_SHEET) as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    row_triples = levels_parser.parse_levels_table([row for row in reader])
+    [sfia_graph.add(triple) for triple in row_triples]
+
+with open(SFIA_SKILLS_SHEET) as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    for row in reader:
+        row_triples = skills_parser.parse_row(row)
+        [sfia_graph.add(triple) for triple in row_triples]
+    query = """
+        INSERT {
+             sfia:CategoryScheme skos:hasTopConcept ?concept.
+        }
+        WHERE {
+            ?concept a sfia:Category.
+            filter not exists { ?concept skos:broader ?broaderConcept. }
+        }
+    """
+    sfia_graph.update(query)
 
 sfia_graph.serialize(OUTPUT)

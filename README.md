@@ -20,6 +20,12 @@ This repo uses [`poetry`](https://python-poetry.org/docs) as package manager. </
 
 The output will be an RDF Turtle file.
 
+## The modelling
+
+For a description of the modelling choices in converting the SFIA dataset to RDF,
+see [conversion_readme.md](conversion_readme.md)
+
 ## The Model
 
 ![Rough vis of the model](sfia_rdf/model.png "Rough vis of the model")
+

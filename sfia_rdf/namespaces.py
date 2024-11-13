@@ -1,18 +1,12 @@
 from rdflib import URIRef, Graph, SKOS
 
-SFIA_VERSION = '8'
-
-BASE = URIRef("https://sfia-online.org/en/")
-LEVELS = BASE + "lor/" + SFIA_VERSION + '/'
-SKILLS = BASE + "skillcode/" + SFIA_VERSION + '/'
-CATEGORIES = BASE + "categories/" + SFIA_VERSION + '/'
-SKILLS_LEVELS = BASE + "skill-levels/" + SFIA_VERSION + '/'
+SFIA_ONTOLOGY = URIRef("https://sfia-online.org/ontology/")
 
 
 def bind_namespaces(g: Graph):
-    g.bind('categories', CATEGORIES)
-    g.bind('skills', SKILLS)
-    g.bind('levels', LEVELS)
-    g.bind('skills_levels', SKILLS_LEVELS)
+    g.bind('skills', URIRef("https://sfia-online.org/en/skillcode/9/"))
+    g.bind('attributes', URIRef("https://sfia-online.org/en/shortcode/9/"))
+    g.bind('levels', URIRef("https://sfia-online.org/en/lor/9/"))
     g.bind('skos', SKOS)
+    g.bind('sfia', SFIA_ONTOLOGY)
     return g
