@@ -42,7 +42,7 @@ def test_levels_assertion(attributes_graph):
     ress = attributes_graph.query("""
     select ?level ?essence
     where {
-        ?level sfia:level_essence ?essence
+        ?level sfia:levelEssence ?essence
     }
     order by ?level
     """)

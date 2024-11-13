@@ -34,7 +34,7 @@ def test_properties(skills_graph):
     ress = skills_graph.query("""
     select ?skillLevel
     where {
-        skills:ISCO sfia:defined_at_level ?skillLevel
+        skills:ISCO sfia:definedAtLevel ?skillLevel
     }
     order by ?skillLevel
     """)
