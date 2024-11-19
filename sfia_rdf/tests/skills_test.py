@@ -29,8 +29,8 @@ def test_properties(skills_graph):
         }
         order by ?skill
     """)
-    assert [str(res.skill) for res in ress] == ["https://sfia-online.org/en/skillcode/9/ISCO",
-                                                "https://sfia-online.org/en/skillcode/9/ITSP"]
+    assert [str(res.skill) for res in ress] == ["https://rdf.sfia-online.org/9/skills/ISCO",
+                                                "https://rdf.sfia-online.org/9/skills/ITSP"]
     ress = skills_graph.query("""
     select ?skillLevel
     where {
@@ -38,5 +38,5 @@ def test_properties(skills_graph):
     }
     order by ?skillLevel
     """)
-    assert [str(res.skillLevel) for res in ress] == ["https://sfia-online.org/ontology/skilllevel/ISCO_6",
-                                                     "https://sfia-online.org/ontology/skilllevel/ISCO_7"]
+    assert [str(res.skillLevel) for res in ress] == ["https://rdf.sfia-online.org/9/ontology/skilllevel/ISCO_6",
+                                                     "https://rdf.sfia-online.org/9/ontology/skilllevel/ISCO_7"]

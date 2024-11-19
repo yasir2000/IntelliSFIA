@@ -19,7 +19,7 @@ def attributes_graph():
     return g
 
 
-def test_properties(attributes_graph):
+def test_levels(attributes_graph):
     ress = attributes_graph.query("""
     select ?level
     where {
@@ -28,17 +28,37 @@ def test_properties(attributes_graph):
     order by ?level
     """)
     assert [str(res.level) for res in ress] == [
+        "https://rdf.sfia-online.org/9/lor/1",
+        "https://rdf.sfia-online.org/9/lor/2",
+        "https://rdf.sfia-online.org/9/lor/3",
+        "https://rdf.sfia-online.org/9/lor/4",
+        "https://rdf.sfia-online.org/9/lor/5",
+        "https://rdf.sfia-online.org/9/lor/6",
+        "https://rdf.sfia-online.org/9/lor/7"
+    ]
+
+
+def test_levels_url(attributes_graph):
+    ress = attributes_graph.query("""
+    select ?url
+    where {
+        ?level a sfia:Level;
+            sfia:url ?url
+    }
+    order by ?url
+    """)
+    assert [str(res.url) for res in ress] == [
         "https://sfia-online.org/en/lor/9/1",
         "https://sfia-online.org/en/lor/9/2",
         "https://sfia-online.org/en/lor/9/3",
         "https://sfia-online.org/en/lor/9/4",
         "https://sfia-online.org/en/lor/9/5",
         "https://sfia-online.org/en/lor/9/6",
-        "https://sfia-online.org/en/lor/9/7",
+        "https://sfia-online.org/en/lor/9/7"
     ]
 
 
-def test_levels_assertion(attributes_graph):
+def test_levels_essences(attributes_graph):
     ress = attributes_graph.query("""
     select ?level ?essence
     where {

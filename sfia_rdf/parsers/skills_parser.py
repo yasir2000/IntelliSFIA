@@ -1,5 +1,6 @@
 from rdflib import RDF, SKOS, Literal, RDFS, URIRef
 
+from sfia_rdf import namespaces
 from sfia_rdf.namespaces import SFIA_ONTOLOGY
 
 
@@ -8,7 +9,7 @@ def hash_name(name: str):
 
 
 def mint_category_iri(s: str):
-    return SFIA_ONTOLOGY + 'categories/' + hash_name(s)
+    return namespaces.CATEGORIES + hash_name(s)
 
 
 def parse_row(row: list):
@@ -19,7 +20,8 @@ def parse_row(row: list):
         return {}
     levels = [level for level in row[2:7 + 1] if level != '']
     code = row[8].strip()
-    skill_iri = URIRef(row[9])
+    skill_iri = namespaces.SKILLS + code
+    skill_url = URIRef(row[9])
     skill = row[10]
     category = row[11].strip()
     subcategory = row[12].strip()
@@ -41,15 +43,16 @@ def parse_row(row: list):
     to_return.add((skill_iri, SKOS.notation, Literal(f"{code}")))
     to_return.add((skill_iri, SFIA_ONTOLOGY + "skillDescription", Literal(desc, 'en')))
     to_return.add((skill_iri, SFIA_ONTOLOGY + "skillNotes", Literal(notes, 'en')))
-    to_return.add((skill_iri, SFIA_ONTOLOGY + "skillCategory", SFIA_ONTOLOGY + 'categories/' + hash_name(subcategory)))
+    to_return.add((skill_iri, SFIA_ONTOLOGY + "skillCategory", mint_category_iri(subcategory)))
+    to_return.add((skill_iri, SFIA_ONTOLOGY + 'url', Literal(skill_url)))
 
     # each row must become multiple skills, whose identity are the code and level
     for level in levels:
-        skill_level = SFIA_ONTOLOGY + f"skilllevel/{code}_{level}"
+        skill_level = namespaces.SKILL_LEVELS + f"{code}_{level}"
         to_return.add((skill_iri, SFIA_ONTOLOGY + "definedAtLevel", skill_level))
         to_return.add((skill_level, RDF.type, SFIA_ONTOLOGY + "SkillLevel"))
         to_return.add((skill_level, SKOS.notation, Literal(f"{code}_{level}")))
-        to_return.add((skill_level, SFIA_ONTOLOGY + "skillLevel", URIRef(f"https://sfia-online.org/en/lor/9/{level}")))
+        to_return.add((skill_level, SFIA_ONTOLOGY + "level", namespaces.LEVELS + level))
         to_return.add((skill_level, SFIA_ONTOLOGY + "skillLevelDescription", Literal(levels_notes_dict[level], 'en')))
 
     return to_return

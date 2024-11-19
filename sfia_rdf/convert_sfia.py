@@ -57,7 +57,7 @@ INSERT DATA {
                         rdfs:range sfia:SkillLevel;
                         rdfs:label "defined at level"@en.
     
-    sfia:skillLevel a owl:ObjectProperty;
+    sfia:level a owl:ObjectProperty;
                 rdfs:domain sfia:SkillLevel;
                 rdfs:range sfia:Level;
                 rdfs:label "has level"@en.

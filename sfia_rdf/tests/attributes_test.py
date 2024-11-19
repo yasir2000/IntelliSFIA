@@ -21,7 +21,7 @@ def attributes_graph():
     return g
 
 
-def test_properties(attributes_graph):
+def test_attribute(attributes_graph):
     ress = attributes_graph.query("""
     select ?attribute
     where {
@@ -29,7 +29,7 @@ def test_properties(attributes_graph):
     }
     order by ?attribute
     """)
-    assert [str(res.attribute) for res in ress] == ["https://sfia-online.org/en/shortcode/9/AUTO"]
+    assert [str(res.attribute) for res in ress] == ["https://rdf.sfia-online.org/9/attributes/AUTO"]
 
 
 def test_levels_assertion(attributes_graph):
@@ -41,12 +41,12 @@ def test_levels_assertion(attributes_graph):
     order by ?level
     """)
     assert [str(res.level) for res in ress] == [
-        "https://sfia-online.org/en/lor/9/1",
-        "https://sfia-online.org/en/lor/9/2",
-        "https://sfia-online.org/en/lor/9/3",
-        "https://sfia-online.org/en/lor/9/4",
-        "https://sfia-online.org/en/lor/9/5",
-        "https://sfia-online.org/en/lor/9/6",
-        "https://sfia-online.org/en/lor/9/7",
+        "https://rdf.sfia-online.org/9/lor/1",
+        "https://rdf.sfia-online.org/9/lor/2",
+        "https://rdf.sfia-online.org/9/lor/3",
+        "https://rdf.sfia-online.org/9/lor/4",
+        "https://rdf.sfia-online.org/9/lor/5",
+        "https://rdf.sfia-online.org/9/lor/6",
+        "https://rdf.sfia-online.org/9/lor/7",
     ]
     assert [str(res.autonomy) for res in ress][0].startswith("Follows instructions")

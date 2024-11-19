@@ -1,5 +1,6 @@
 from rdflib import RDF, Literal, URIRef, SKOS, XSD
 
+from sfia_rdf import namespaces
 from sfia_rdf.namespaces import SFIA_ONTOLOGY
 
 
@@ -26,7 +27,9 @@ def parse_levels_table(rows: list):
     urls = get_items_for(rows, 'URL')
     zipped = list(zip(levels, guiding_phrases, essences, urls))
     for i in zipped:
-        iri = URIRef(i[3].strip())
+        level = i[0]
+        iri = namespaces.LEVELS + level
+        url = URIRef(i[3].strip())
         guiding_phrase = Literal(i[1].strip(), 'en')
         essence = Literal(i[2].strip(), 'en')
         to_return.add((iri, RDF.type, SFIA_ONTOLOGY + 'Level'))
@@ -34,4 +37,5 @@ def parse_levels_table(rows: list):
         to_return.add((iri, SKOS.inScheme, SFIA_ONTOLOGY + 'LorScheme'))
         to_return.add((iri, SFIA_ONTOLOGY + 'levelGuidingPhrase', guiding_phrase))
         to_return.add((iri, SFIA_ONTOLOGY + 'levelEssence', essence))
+        to_return.add((iri, SFIA_ONTOLOGY + 'url', Literal(url)))
     return to_return

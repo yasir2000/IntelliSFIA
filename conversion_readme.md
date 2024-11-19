@@ -12,10 +12,16 @@ Let us see an example of the data converted in RDF (Turtle serialisation format)
 Then, we will describe our modelling choices.
 
 ```
-@prefix attributes: <https://sfia-online.org/en/shortcode/9/> .
-@prefix levels: <https://sfia-online.org/en/lor/9/> .
-@prefix skills: <https://sfia-online.org/en/skillcode/9/> .
-@prefix sfia: <https://sfia-online.org/ontology/> .
+@prefix attributes: <https://rdf.sfia-online.org/9/attributes/> .
+@prefix categories: <https://rdf.sfia-online.org/9/categories/> .
+@prefix levels: <https://rdf.sfia-online.org/9/lor/> .
+@prefix skilllevels: <https://rdf.sfia-online.org/9/skilllevels/> .
+@prefix skills: <https://rdf.sfia-online.org/9/skills/> .
+@prefix sfia: <https://rdf.sfia-online.org/9/ontology/> .
+
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 # Property (attribute) definition
 attributes:AUTO a owl:AnnotationProperty ;
@@ -23,7 +29,8 @@ attributes:AUTO a owl:AnnotationProperty ;
     rdfs:comment "The level of independence, [..]."@en ;
     skos:notation "AUTO" ;
     sfia:attributeGuidanceNotes "...."@en ;
-    sfia:attributeType "Attributes"@en .
+    sfia:attributeType "Attributes"@en ;
+    sfia:url "https://sfia-online.org/en/shortcode/9/AUTO" .
 
 # Level of Responsibility
 levels:2 a sfia:Level;
@@ -33,25 +40,26 @@ levels:2 a sfia:Level;
     attributes:AUTO "Works under routine direction [..]"@en ;
     # (other attributes...)
     sfia:levelEssence "Provides assistance to others, [..]"@en ;
-    sfia:levelGuidingPhrase "Assist"@en .
+    sfia:levelGuidingPhrase "Assist"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/2" .
 
 # Skill definition
-skills:ITSP a :Skill;
+skills:ITSP a sfia:Skill;
     rdfs:label "Strategic planning"@en ;
     skos:notation "ITSP" ;
-    sfia:definedAtLevel <https://sfia-online.org/ontology/skilllevel/ITSP_4>,
-        <https://sfia-online.org/ontology/skilllevel/ITSP_5>,
-        <https://sfia-online.org/ontology/skilllevel/ITSP_6>,
-        <https://sfia-online.org/ontology/skilllevel/ITSP_7> ;
-    sfia:skillCategory <https://sfia-online.org/ontology/categories/strategy_and_planning> ;
+    sfia:definedAtLevel skilllevels:ITSP_4,
+        skilllevels/ITSP_5,
+        skilllevels:ITSP_6,
+        skilllevels:ITSP_7 ;
+    sfia:skillCategory categories:strategy_and_planning ;
     sfia:skillDescription "Creating and maintaining organisational-level strategies to align overall business plans, actions and resources with high-level business objectives."@en ;
-    sfia:skillNotes ".. focused on enterprise-wide strategic planning and management, [..]"@en .
-
+    sfia:skillNotes ".. focused on enterprise-wide strategic planning and management, [..]"@en ;
+    sfia:url "https://sfia-online.org/en/skillcode/9/ITSP" .
 
 # Skill level
-<https://sfia-online.org/ontology/skilllevel/ITSP_4> a :SkillLevel;
+skilllevels:ITSP_4 a :SkillLevel;
     skos:notation "ITSP_4" ;
-    sfia:skillLevel levels:4 ;
+    sfia:level levels:4 ;
     sfia:skillLevelDescription "Contributes to the collection and analysis of information [..]"@en .
 ```
 
@@ -78,12 +86,12 @@ as a (small) SKOS concept scheme, `sfia:CategoryScheme`. In the current SFIA rel
 this scheme has 6 top-level categories, with several sub-categories under them. For example:
 
 ```
-<https://sfia-online.org/ontology/categories/development_and_implementation> a sfia:Category ;
+categories:development_and_implementation> a sfia:Category ;
     skos:inScheme sfia:CategoryScheme ;
     skos:prefLabel "Development and implementation"@en .
 
-<https://sfia-online.org/ontology/categories/user_centred_design> a sfia:Category ;
-    skos:broader <https://sfia-online.org/ontology/categories/development_and_implementation> ;
+categories:user_centred_design> a sfia:Category ;
+    skos:broader categories:development_and_implementation> ;
     skos:inScheme sfia:CategoryScheme ;
     skos:prefLabel "User centred design"@en .
 ```
@@ -118,19 +126,26 @@ Parsing the Levels file will provide an RDF graph describing the levels.
 ## Linked Data
 
 This conversion is meant to produce an RDF distribution for a given SFIA 9 published release.
-When available, we used SFIA's provided URLs for its entities (levels, skills, attributes..) as IRIs in RDF.
-This does not mean that those URLs will provide content-negotiated RDF when visited. They serve useful, well-presented
-human-readable HTML. The SFIA initiative is not committed, for now, to serve RDF content, so our contribution here
-has been to provide an RDF conversion with what _we think_ is a good trade-off between semantic best practices
-and pragmatism.
-We give here a summary of the IRI schemes used. As mentioned, when available they come from SFIA, and when not, we
-minted our own.
+Even if SFIA does not expose Linked-Data resolvable IRIs, we designed this conversion so that these IRIs are
+both memorable (transparent) and consistent with a Linked Data approach in mind.
+
+We give here a summary of the IRI schemes used.
 We used `camelCase` naming conventions except for categories, where we "hash" the category name with underscores.
 
-- For Skills: `https://sfia-online.org/en/skillcode/9/_<skill_code>_`
-- For Attributes: `https://sfia-online.org/en/shortcode/9/_<attribute_code>_`
-- For levels: `https://sfia-online.org/en/lor/9/_<level>_`
-- For other properties and classes: `https://sfia-online.org/ontology/`
-    - ex. categories: `https://sfia-online.org/ontology/categories/user_centred_design`
-    - ex. skill levels: `https://sfia-online.org/ontology/skilllevel/ACIN_2`
-    - ex. other property: `https://sfia-online.org/ontology/skillDescription`
+- For Skills: `https://rdf.sfia-online.org/skills/9/_<skill_code>_`
+- For Attributes: `https://rdf.sfia-online.org/attributes/9/_<attribute_code>_`
+- For levels: `https://rdf.sfia-online.org/lor/9/_<level>_`
+- Skill Levels: `https://rdf.sfia-online.org/skilllevels/ACIN_2`
+- Categories: `https://rdf.sfia-online.org/categories/user_centred_design`
+- For other properties and classes: `https://rdf.sfia-online.org/ontology/9/`
+    - ex. of a property: `https://rdf.sfia-online.org/ontology/9/properties/skillDescription`
+    - classes: `https://rdf.sfia-online.org/ontology/9/classes/SkillLevel`
+
+As for SFIA HTML pages, we provide them in RDF with a `url` property. They follow the following conventions:
+
+- Skills: `https://sfia-online.org/en/skillcode/9/_<skill_code>_`
+- Attributes: `https://sfia-online.org/en/shortcode/9/_<attribute_code>_`
+- Levels: `https://sfia-online.org/en/lor/9/_<level>_`
+
+The `en` (language) and `9` (version part of the path) are optional, and when not provided they resolve to
+these two defaults.
