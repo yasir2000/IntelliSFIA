@@ -38,5 +38,5 @@ def test_properties(skills_graph):
     }
     order by ?skillLevel
     """)
-    assert [str(res.skillLevel) for res in ress] == ["https://rdf.sfia-online.org/9/ontology/skilllevel/ISCO_6",
-                                                     "https://rdf.sfia-online.org/9/ontology/skilllevel/ISCO_7"]
+    assert [str(res.skillLevel) for res in ress] == ["https://rdf.sfia-online.org/9/skilllevels/ISCO_6",
+                                                     "https://rdf.sfia-online.org/9/skilllevels/ISCO_7"]
