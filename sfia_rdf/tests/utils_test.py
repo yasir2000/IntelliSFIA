@@ -11,4 +11,4 @@ def test_hash():
 def test_bind_namespaces():
     g = Graph()
     namespaces.bind_namespaces(g)
-    assert g.qname("https://sfia-online.org/en/lor/9/2") == "levels:2"
+    assert g.qname("https://rdf.sfia-online.org/9/lor/2") == "levels:2"
