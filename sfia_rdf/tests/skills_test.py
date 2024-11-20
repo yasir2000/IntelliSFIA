@@ -40,3 +40,18 @@ def test_properties(skills_graph):
     """)
     assert [str(res.skillLevel) for res in ress] == ["https://rdf.sfia-online.org/9/skilllevels/ISCO_6",
                                                      "https://rdf.sfia-online.org/9/skilllevels/ISCO_7"]
+
+
+def test_categories(skills_graph):
+    ress = skills_graph.query("""
+        select ?cat
+        where {
+            ?cat a sfia:Category
+        }
+        order by ?cat
+    """)
+    print(str(len([res.cat for res in ress])))
+    assert [str(res.cat) for res in ress] == [
+        'https://rdf.sfia-online.org/9/categories/strategy_and_architecture',
+        'https://rdf.sfia-online.org/9/categories/strategy_and_planning'
+    ]

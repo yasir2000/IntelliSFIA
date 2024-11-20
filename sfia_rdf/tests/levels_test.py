@@ -75,3 +75,4 @@ def test_levels_essences(attributes_graph):
         "Has organisational influence.",
         "Operates at the highest organisational level.",
     ]
+    assert all([res.essence.language == 'en' for res in ress])
