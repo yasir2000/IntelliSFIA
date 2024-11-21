@@ -6,7 +6,11 @@ from sfia_rdf.namespaces import SFIA_ONTOLOGY
 
 def parse_row(row: list):
     """
-    Returns a set of triples.
+    Args:
+        row: a list representing a python CSV row
+
+    Returns:
+        A set of RDF triples
 
     """
     to_return = set()

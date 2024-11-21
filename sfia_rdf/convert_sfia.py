@@ -12,6 +12,9 @@ SFIA_LEVELS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-stan
 
 OUTPUT = os.path.expanduser('~') + "/Desktop/SFIA/SFIA.ttl"
 
+DELIMITER = ","
+QUOTE_CHAR = '"'
+
 sfia_graph = Graph()
 namespaces.bind_namespaces(sfia_graph)
 
@@ -102,18 +105,18 @@ INSERT DATA {
 """)
 
 with open(SFIA_ATTRIBUTES_SHEET) as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    reader = csv.reader(csvfile, delimiter=DELIMITER, quotechar=QUOTE_CHAR)
     for row in reader:
         row_triples = attributes_parser.parse_row(row)
         [sfia_graph.add(triple) for triple in row_triples]
 
 with open(SFIA_LEVELS_SHEET) as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    reader = csv.reader(csvfile, delimiter=DELIMITER, quotechar=QUOTE_CHAR)
     row_triples = levels_parser.parse_levels_table([row for row in reader])
     [sfia_graph.add(triple) for triple in row_triples]
 
 with open(SFIA_SKILLS_SHEET) as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    reader = csv.reader(csvfile, delimiter=DELIMITER, quotechar=QUOTE_CHAR)
     for row in reader:
         row_triples = skills_parser.parse_row(row)
         [sfia_graph.add(triple) for triple in row_triples]

@@ -13,7 +13,12 @@ def mint_category_iri(s: str):
 
 
 def parse_row(row: list):
-    """Returns a set of triples"""
+    """
+    Args:
+        row: a list representing a python CSV row
+    Returns:
+        A set of RDF triples
+    """
     to_return = set()
     row_number = row[0]
     if row_number == "#":

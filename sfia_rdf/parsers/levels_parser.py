@@ -18,7 +18,12 @@ def get_items_for(rows, row_header: str):
 
 def parse_levels_table(rows: list):
     """
-    Returns a set of triples.
+    The Levels table has headers on rows rather than on columns.
+    For this reason, we have to parse it differently to the other two
+    Args:
+        rows: a list of lists, representing python CSV rows
+    Returns:
+        A set of RDF triples
     """
     to_return = set()
     levels = get_items_for(rows, 'Level')
