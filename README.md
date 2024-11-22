@@ -3,6 +3,10 @@
 This script converts in RDF the SFIA spreadsheet provided at https://sfia-online.org/en/sfia-9/documentation .
 The conversion is based on the model below.
 
+This work contains references to SFIA (the Skills Framework for the Information Age) with the permission of the SFIA
+Foundation.
+The rights to any SFIA content remain with SFIA - see `SFIA_LICENSE_NOTE` for information.
+
 ## Python setup
 
 (Assuming you have `python3` (3.11 or above) on your system)
