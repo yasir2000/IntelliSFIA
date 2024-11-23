@@ -5,7 +5,7 @@ The conversion is based on the model below.
 
 This work contains references to SFIA (the Skills Framework for the Information Age) with the permission of the SFIA
 Foundation.
-The rights to any SFIA content remain with SFIA - see `SFIA_LICENSE_NOTE` for information.
+The rights to any SFIA content remain with SFIA - see [SFIA_LICENSE_NOTE](SFIA_LICENSE_NOTE) for information.
 
 ## Python setup
 
