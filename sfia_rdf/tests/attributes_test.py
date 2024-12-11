@@ -40,13 +40,14 @@ def test_levels_assertion(attributes_graph):
     }
     order by ?level
     """)
+    lor_namespace = "https://rdf.sfia-online.org/9/lor/"
     assert [str(res.level) for res in ress] == [
-        "https://rdf.sfia-online.org/9/lor/1",
-        "https://rdf.sfia-online.org/9/lor/2",
-        "https://rdf.sfia-online.org/9/lor/3",
-        "https://rdf.sfia-online.org/9/lor/4",
-        "https://rdf.sfia-online.org/9/lor/5",
-        "https://rdf.sfia-online.org/9/lor/6",
-        "https://rdf.sfia-online.org/9/lor/7",
+        f"{lor_namespace}1",
+        f"{lor_namespace}2",
+        f"{lor_namespace}3",
+        f"{lor_namespace}4",
+        f"{lor_namespace}5",
+        f"{lor_namespace}6",
+        f"{lor_namespace}7",
     ]
     assert [str(res.autonomy) for res in ress][0].startswith("Follows instructions")

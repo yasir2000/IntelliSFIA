@@ -29,13 +29,15 @@ def parse_row(row: list):
     levels_notes_dict = {level: note for (level, note) in zip(levels, levels_notes)}
 
     # property definition
-    to_return.add((attribute_iri, RDF.type, OWL.AnnotationProperty))
-    to_return.add((attribute_iri, RDFS.label, Literal(name, 'en')))
-    to_return.add((attribute_iri, SKOS.notation, Literal(code)))
-    to_return.add((attribute_iri, SFIA_ONTOLOGY + "attributeType", Literal(type, 'en')))
-    to_return.add((attribute_iri, RDFS.comment, Literal(overall_desc, 'en')))
-    to_return.add((attribute_iri, SFIA_ONTOLOGY + "attributeGuidanceNotes", Literal(guidance_notes, 'en')))
-    to_return.add((attribute_iri, SFIA_ONTOLOGY + "url", Literal(attribute_url)))
+    to_return.update({
+        (attribute_iri, RDF.type, OWL.AnnotationProperty),
+        (attribute_iri, RDFS.label, Literal(name, 'en')),
+        (attribute_iri, SKOS.notation, Literal(code)),
+        (attribute_iri, SFIA_ONTOLOGY + "attributeType", Literal(type, 'en')),
+        (attribute_iri, RDFS.comment, Literal(overall_desc, 'en')),
+        (attribute_iri, SFIA_ONTOLOGY + "attributeGuidanceNotes", Literal(guidance_notes, 'en')),
+        (attribute_iri, SFIA_ONTOLOGY + "url", Literal(attribute_url))
+    })
 
     # association to Level
     for level in levels:

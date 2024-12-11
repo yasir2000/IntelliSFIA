@@ -37,10 +37,12 @@ def parse_levels_table(rows: list):
         url = URIRef(i[3].strip())
         guiding_phrase = Literal(i[1].strip(), 'en')
         essence = Literal(i[2].strip(), 'en')
-        to_return.add((iri, RDF.type, SFIA_ONTOLOGY + 'Level'))
-        to_return.add((iri, SKOS.notation, Literal(i[0], datatype=XSD.integer)))
-        to_return.add((iri, SKOS.inScheme, SFIA_ONTOLOGY + 'LorScheme'))
-        to_return.add((iri, SFIA_ONTOLOGY + 'levelGuidingPhrase', guiding_phrase))
-        to_return.add((iri, SFIA_ONTOLOGY + 'levelEssence', essence))
-        to_return.add((iri, SFIA_ONTOLOGY + 'url', Literal(url)))
+        to_return.update({
+            (iri, RDF.type, SFIA_ONTOLOGY + 'Level'),
+            (iri, SKOS.notation, Literal(i[0], datatype=XSD.integer)),
+            (iri, SKOS.inScheme, SFIA_ONTOLOGY + 'LorScheme'),
+            (iri, SFIA_ONTOLOGY + 'levelGuidingPhrase', guiding_phrase),
+            (iri, SFIA_ONTOLOGY + 'levelEssence', essence),
+            (iri, SFIA_ONTOLOGY + 'url', Literal(url))
+        })
     return to_return

@@ -38,26 +38,32 @@ def parse_row(row: list):
     # side effect: build the hierarchy of categories
     for concept in [category, subcategory]:
         category_iri = mint_category_iri(concept)
-        to_return.add((category_iri, RDF.type, SFIA_ONTOLOGY + 'Category'))
-        to_return.add((category_iri, SKOS.prefLabel, Literal(concept, 'en')))
-        to_return.add((category_iri, SKOS.inScheme, SFIA_ONTOLOGY + "CategoryScheme"))
+        to_return.update({
+            (category_iri, RDF.type, SFIA_ONTOLOGY + 'Category'),
+            (category_iri, SKOS.prefLabel, Literal(concept, 'en')),
+            (category_iri, SKOS.inScheme, SFIA_ONTOLOGY + "CategoryScheme")
+        })
     to_return.add((mint_category_iri(subcategory), SKOS.broader, mint_category_iri(category)))
 
-    to_return.add((skill_iri, RDF.type, SFIA_ONTOLOGY + "Skill"))
-    to_return.add((skill_iri, RDFS.label, Literal(skill, 'en')))
-    to_return.add((skill_iri, SKOS.notation, Literal(f"{code}")))
-    to_return.add((skill_iri, SFIA_ONTOLOGY + "skillDescription", Literal(desc, 'en')))
-    to_return.add((skill_iri, SFIA_ONTOLOGY + "skillNotes", Literal(notes, 'en')))
-    to_return.add((skill_iri, SFIA_ONTOLOGY + "skillCategory", mint_category_iri(subcategory)))
-    to_return.add((skill_iri, SFIA_ONTOLOGY + 'url', Literal(skill_url)))
+    to_return.update({
+        (skill_iri, RDF.type, SFIA_ONTOLOGY + "Skill"),
+        (skill_iri, RDFS.label, Literal(skill, 'en')),
+        (skill_iri, SKOS.notation, Literal(f"{code}")),
+        (skill_iri, SFIA_ONTOLOGY + "skillDescription", Literal(desc, 'en')),
+        (skill_iri, SFIA_ONTOLOGY + "skillNotes", Literal(notes, 'en')),
+        (skill_iri, SFIA_ONTOLOGY + "skillCategory", mint_category_iri(subcategory)),
+        (skill_iri, SFIA_ONTOLOGY + 'url', Literal(skill_url))
+    })
 
     # each row must become multiple skills, whose identity are the code and level
     for level in levels:
         skill_level = namespaces.SKILL_LEVELS + f"{code}_{level}"
-        to_return.add((skill_iri, SFIA_ONTOLOGY + "definedAtLevel", skill_level))
-        to_return.add((skill_level, RDF.type, SFIA_ONTOLOGY + "SkillLevel"))
-        to_return.add((skill_level, SKOS.notation, Literal(f"{code}_{level}")))
-        to_return.add((skill_level, SFIA_ONTOLOGY + "level", namespaces.LEVELS + level))
-        to_return.add((skill_level, SFIA_ONTOLOGY + "skillLevelDescription", Literal(levels_notes_dict[level], 'en')))
+        to_return.update({
+            (skill_iri, SFIA_ONTOLOGY + "definedAtLevel", skill_level),
+            (skill_level, RDF.type, SFIA_ONTOLOGY + "SkillLevel"),
+            (skill_level, SKOS.notation, Literal(f"{code}_{level}")),
+            (skill_level, SFIA_ONTOLOGY + "level", namespaces.LEVELS + level),
+            (skill_level, SFIA_ONTOLOGY + "skillLevelDescription", Literal(levels_notes_dict[level], 'en'))
+        })
 
     return to_return
