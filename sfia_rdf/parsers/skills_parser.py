@@ -23,7 +23,7 @@ def parse_row(row: list):
     row_number = row[0]
     if row_number == "#":
         return {}
-    levels = [level for level in row[2:7 + 1] if level != '']
+    levels = [level for level in row[1:7 + 1] if level != '']
     code = row[8].strip()
     skill_iri = namespaces.SKILLS + code
     skill_url = URIRef(row[9])
