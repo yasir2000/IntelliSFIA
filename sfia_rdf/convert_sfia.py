@@ -35,7 +35,7 @@ INSERT DATA {
                 rdfs:label "Scheme for the Levels of Responsibility"@en.
                 
     sfia:Level a owl:Class;
-                owl:subClassOf skos:Concept;
+                rdfs:subClassOf skos:Concept;
                 rdfs:label "Level of Responsibility"@en.
 
     sfia:Skill a owl:Class;
