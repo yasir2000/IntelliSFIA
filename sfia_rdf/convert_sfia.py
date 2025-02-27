@@ -1,16 +1,19 @@
 import csv
 import os
+from datetime import datetime
 
 from rdflib import Graph
 
 from sfia_rdf import namespaces
 from sfia_rdf.parsers import skills_parser, levels_parser, attributes_parser
 
-SFIA_SKILLS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_SKILLS.csv"
-SFIA_ATTRIBUTES_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_ATTRIBUTES.csv"
-SFIA_LEVELS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/sfia-9_current-standard_en_241029_LEVELS.csv"
+SFIA_SKILLS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/SKILLS_250129.csv"
+SFIA_ATTRIBUTES_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/ATTRIBUTES_250129.csv"
+SFIA_LEVELS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/LEVELS_250129.csv"
 
-OUTPUT = os.path.expanduser('~') + "/Desktop/SFIA/SFIA.ttl"
+TODAY = datetime.today().strftime('%Y-%m-%d')
+
+OUTPUT = os.path.expanduser('~') + f"/Desktop/SFIA/SFIA_9_{TODAY}.ttl"
 
 DELIMITER = ","
 QUOTE_CHAR = '"'
