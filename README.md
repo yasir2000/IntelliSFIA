@@ -7,6 +7,9 @@ This work contains references to SFIA with the permission of the SFIA Foundation
 The rights to any SFIA content remain with SFIA - see [SFIA_LICENSE_NOTE](SFIA_LICENSE_NOTE) for information.
 
 This script converts into RDF the SFIA spreadsheet provided at https://sfia-online.org/en/sfia-9/documentation .
+At the same page, the output of this script (RDF in Turtle format) is also available.
+However, the version is not guaranteed to be the latest one.
+
 The conversion is based on the model below.
 
 ## Python setup
