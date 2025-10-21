@@ -56,13 +56,6 @@ interface SFIA9Skill {
   sfia_version: string;
 }
 
-interface SFIA9LevelDefinition {
-  level: number;
-  guiding_phrase: string;
-  essence: string;
-  url?: string;
-}
-
 interface SFIA9Statistics {
   sfia_version: string;
   total_attributes: number;
