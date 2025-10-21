@@ -1,0 +1,240 @@
+@prefix attributes: <https://rdf.sfia-online.org/9/attributes/> .
+@prefix categories: <https://rdf.sfia-online.org/9/categories/> .
+@prefix levels: <https://rdf.sfia-online.org/9/lor/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sfia: <https://rdf.sfia-online.org/9/ontology/> .
+@prefix skilllevels: <https://rdf.sfia-online.org/9/skilllevels/> .
+@prefix skills: <https://rdf.sfia-online.org/9/skills/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+attributes:AUTO a owl:AnnotationProperty ;
+    rdfs:label "Autonomy"@en ;
+    rdfs:comment "The level of independence, discretion and accountability for results in your role."@en ;
+    skos:notation "AUTO" ;
+    sfia:attributeGuidanceNotes """Autonomy in SFIA represents a progression from following instructions to setting organisational strategy. It involves:
+
+working under varying levels of direction and supervision
+making independent decisions in line with responsibility
+taking accountability for actions and their outcomes
+delegating tasks and responsibilities appropriately
+setting personal, team, or organisational goals.
+
+Effective autonomy encompasses decision-making skills, self-management and the ability to balance independence with organisational goals. Autonomy is closely linked with skills such as decision-making, leadership, and planning.
+As professionals advance, their level of autonomy increasingly shapes their ability to drive change, innovate and contribute to organisational success. As professionals advance, their autonomy enables them to lead initiatives and drive strategic outcomes.Â  At higher levels, individuals shape their role and make decisions that have a wider organisational impact, with minimal supervision."""@en ;
+    sfia:attributeType "Attributes"@en ;
+    sfia:url "https://sfia-online.org/en/shortcode/9/AUTO" .
+
+levels:1 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 1 ;
+    attributes:AUTO "Follows instructions and works under close direction. Receives specific instructions and guidance, has work closely reviewed."@en ;
+    sfia:levelEssence "Performs routine tasks"@en ;
+    sfia:levelGuidingPhrase "Follow"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/1" .
+
+levels:2 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 2 ;
+    attributes:AUTO "Works under routine direction.Â Receives instructions and guidance, has work regularly reviewed."@en ;
+    sfia:levelEssence "Provides assistance"@en ;
+    sfia:levelGuidingPhrase "Assist"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/2" .
+
+levels:3 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 3 ;
+    attributes:AUTO "Works under general direction to complete assigned tasks. Receives guidance and has work reviewed at agreed milestones. When required, delegates routine tasks to others within own team."@en ;
+    sfia:levelEssence "Performs varied tasks"@en ;
+    sfia:levelGuidingPhrase "Apply"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/3" .
+
+sfia:attributeGuidanceNotes a owl:AnnotationProperty ;
+    rdfs:label "has guidance notes"@en ;
+    rdfs:domain owl:AnnotationProperty .
+
+sfia:attributeType a owl:AnnotationProperty ;
+    rdfs:label "has attribute type"@en ;
+    rdfs:domain owl:AnnotationProperty .
+
+sfia:definedAtLevel a owl:ObjectProperty ;
+    rdfs:label "defined at level"@en ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range sfia:SkillLevel .
+
+sfia:level a owl:ObjectProperty ;
+    rdfs:label "has level"@en ;
+    rdfs:domain sfia:SkillLevel ;
+    rdfs:range sfia:Level .
+
+sfia:levelEssence a owl:AnnotationProperty ;
+    rdfs:label "essence of the level"@en ;
+    rdfs:domain owl:Level .
+
+sfia:levelGuidingPhrase a owl:AnnotationProperty ;
+    rdfs:label "has guiding phrase"@en ;
+    rdfs:domain owl:Level .
+
+sfia:skillCategory a owl:ObjectProperty ;
+    rdfs:label "has category"@en ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range sfia:Category .
+
+sfia:skillDescription a owl:AnnotationProperty ;
+    rdfs:label "has overall description"@en ;
+    rdfs:domain sfia:Skill .
+
+sfia:skillLevelDescription a owl:AnnotationProperty ;
+    rdfs:label "has skill-level description"@en ;
+    rdfs:domain sfia:SkillLevel .
+
+sfia:skillNotes a owl:AnnotationProperty ;
+    rdfs:label "notes"@en ;
+    rdfs:domain sfia:Skill .
+
+skills:ISCO a sfia:Skill ;
+    rdfs:label "Information systems coordination"@en ;
+    skos:notation "ISCO" ;
+    sfia:definedAtLevel skilllevels:ISCO_6,
+        skilllevels:ISCO_7 ;
+    sfia:skillCategory categories:strategy_and_planning ;
+    sfia:skillDescription "Coordinating information and technology strategies where the adoption of a common approach would benefit the organisation."@en ;
+    sfia:skillNotes """This skill is typically applied in large organisations with devolved information, data, technology, digital, cybersecurity functions or in collaborative enterprises of independent organisations.
+Activities may include, but are not limited to:
+
+developing and implementing strategies for coordinated deployment across multiple business units, such as, standardising hardware procurement, aligning software licensing and unifying cloud adoption approaches
+facilitating communication and collaboration between autonomous units
+identifying opportunities for shared services and integration
+coordinating enterprise-wide cybersecurity strategies and practices
+aligning initiatives with overall business objectives
+promoting standardisation of processes and technologies where beneficial
+managing cross-functional projects and initiatives
+evaluating and recommending enterprise-wide solutions
+developing governance frameworks for coordinated management of digital, data and technology."""@en ;
+    sfia:url "https://sfia-online.org/en/skillcode/9/ISCO" .
+
+skills:ITSP a sfia:Skill ;
+    rdfs:label "Strategic planning"@en ;
+    skos:notation "ITSP" ;
+    sfia:definedAtLevel skilllevels:ITSP_4,
+        skilllevels:ITSP_5,
+        skilllevels:ITSP_6,
+        skilllevels:ITSP_7 ;
+    sfia:skillCategory categories:strategy_and_planning ;
+    sfia:skillDescription "Creating and maintaining organisational-level strategies to align overall business plans, actions and resources with high-level business objectives."@en ;
+    sfia:skillNotes """This skill is primarily focused on enterprise-wide strategic planning and management, rather than developing strategies for specific technical or functional areas. For senior managers or individuals working on their own technical or functional strategies, this skill may be too broad and high-level. Instead, they may require more specific skills related to their particular domain or area of expertise.
+Activities may include, but are not limited to:
+
+conducting environmental analyses to inform strategy development
+collaborating with stakeholders to formulate and implement strategies and action plans
+using data analytics and digital tools to support strategic decision-making and monitor progress
+ensuring agility and flexibility in strategy execution to adapt to changing business needs
+communicating and embedding strategic management through objectives, accountabilities and progress monitoring
+continuously reviewing and iterating strategic plans to maintain alignment with business goals."""@en ;
+    sfia:url "https://sfia-online.org/en/skillcode/9/ITSP" .
+
+levels:4 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 4 ;
+    attributes:AUTO "Works under general direction within a clear framework of accountability. Exercises considerable personal responsibility and autonomy. When required, plans, schedules, and delegates work to others, typically within own team."@en ;
+    sfia:levelEssence "Performs diverse activities"@en ;
+    sfia:levelGuidingPhrase "Enable"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/4" .
+
+levels:5 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 5 ;
+    attributes:AUTO "Works under broad direction. Work is self-initiated, consistent with agreed operational and budgetary requirements for meeting allocated technical and/or group objectives. Defines tasks and delegates work to teams and individuals within area of responsibility."@en ;
+    sfia:levelEssence "Provides guidance."@en ;
+    sfia:levelGuidingPhrase "Ensure, advise"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/5" .
+
+skilllevels:ISCO_6 a sfia:SkillLevel ;
+    skos:notation "ISCO_6" ;
+    sfia:level levels:6 ;
+    sfia:skillLevelDescription """Maintains awareness of the global needs of the organisation.
+Promotes the benefits that a common approach to technology deployment will bring to the entire organisation.
+Coordinates and collaborates with others on the promotion, acquisition, development and implementation of information systems and services."""@en .
+
+skilllevels:ISCO_7 a sfia:SkillLevel ;
+    skos:notation "ISCO_7" ;
+    sfia:level levels:7 ;
+    sfia:skillLevelDescription """Establishes the organisation's strategy for managing information and communicates the policies, standards, procedures and methods necessary to implement the strategy.
+Coordinates all aspects of management of the lifecycle of information systems.
+Represents the interests of the entire organisation to general management and external bodies on matters relating to information strategy."""@en .
+
+skilllevels:ITSP_4 a sfia:SkillLevel ;
+    skos:notation "ITSP_4" ;
+    sfia:level levels:4 ;
+    sfia:skillLevelDescription """Contributes to the collection and analysis of information to support strategy development.
+Assists in the preparation of reports and insights for strategic planning.
+Supports the communication of strategic plans and related change initiatives to relevant stakeholders.
+Helps monitor progress against strategic objectives and provides feedback."""@en .
+
+skilllevels:ITSP_5 a sfia:SkillLevel ;
+    skos:notation "ITSP_5" ;
+    sfia:level levels:5 ;
+    sfia:skillLevelDescription """Collates information and creates reports and insights to support strategy management processes.
+Ensures all stakeholders are aware of the strategic management approach and timetables. Provides support and guidance to help stakeholders adhere to the approach.
+Develops and communicates plans to drive forward the strategy and related change planning.
+Contributes to the development of policies, standards and guidelines for strategy development and planning."""@en .
+
+skilllevels:ITSP_6 a sfia:SkillLevel ;
+    skos:notation "ITSP_6" ;
+    sfia:level levels:6 ;
+    sfia:skillLevelDescription """Sets policies, standards and guidelines for how the organisation conducts strategy development and planning.
+Leads and manages the creation or review of a strategy that meets the requirements of the business.
+Develops, communicates, implements and reviews the processes which embed strategic management in the operational management of the organisation."""@en .
+
+skilllevels:ITSP_7 a sfia:SkillLevel ;
+    skos:notation "ITSP_7" ;
+    sfia:level levels:7 ;
+    sfia:skillLevelDescription """Leads the definition, implementation and communication of the organisationâ€™s strategic management framework.
+Directs the creation and review of a strategy and plans to support the strategic requirements of the business."""@en .
+
+categories:strategy_and_architecture a sfia:Category ;
+    skos:inScheme sfia:CategoryScheme ;
+    skos:prefLabel "Strategy and architecture"@en .
+
+categories:strategy_and_planning a sfia:Category ;
+    skos:broader categories:strategy_and_architecture ;
+    skos:inScheme sfia:CategoryScheme ;
+    skos:prefLabel "Strategy and planning"@en .
+
+levels:6 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 6 ;
+    attributes:AUTO "Guides high level decisions and strategies within the organisationâ€™s overall policies and objectives.Â Has defined authority and accountability for actions and decisions within a significant area of work, including technical, financial and quality aspects.Â Delegates responsibility for operational objectives."@en ;
+    sfia:levelEssence "Has organisational influence."@en ;
+    sfia:levelGuidingPhrase "Initiate, influence"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/6" .
+
+levels:7 a sfia:Level ;
+    skos:inScheme sfia:LorScheme ;
+    skos:notation 7 ;
+    attributes:AUTO "Defines and leads the organisationâ€™s vision and strategy within over-arching business objectives. Is fully accountable for actions taken and decisions made, both by self and others to whom responsibilities have been assigned. Delegates authority and responsibility for strategic business objectives."@en ;
+    sfia:levelEssence "Operates at the highest organisational level."@en ;
+    sfia:levelGuidingPhrase "Set strategy, inspire, mobilise"@en ;
+    sfia:url "https://sfia-online.org/en/lor/9/7" .
+
+sfia:CategoryScheme a skos:ConceptScheme ;
+    rdfs:label "Scheme for the Skills' Categories"@en ;
+    skos:hasTopConcept categories:strategy_and_architecture .
+
+sfia:Category rdfs:subClassOf skos:Concept ;
+    skos:prefLabel "Category"@en .
+
+sfia:Skill a owl:Class ;
+    rdfs:label "Skill"@en .
+
+sfia:LorScheme a skos:ConceptScheme ;
+    rdfs:label "Scheme for the Levels of Responsibility"@en .
+
+sfia:Level a owl:Class ;
+    rdfs:label "Level of Responsibility"@en ;
+    rdfs:subClassOf skos:Concept .
+
+sfia:SkillLevel a owl:Class ;
+    rdfs:label "Skill Level"@en .
+

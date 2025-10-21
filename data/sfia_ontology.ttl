@@ -1,0 +1,205 @@
+@prefix sfia: <http://intellisfia.org/sfia/> .
+@prefix sfiaSkill: <http://intellisfia.org/sfia/skills/> .
+@prefix sfiaLevel: <http://intellisfia.org/sfia/levels/> .
+@prefix sfiaAttr: <http://intellisfia.org/sfia/attributes/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# SFIA Ontology Definition
+# ========================
+
+# Main Classes
+sfia:Skill rdf:type owl:Class ;
+    rdfs:label "SFIA Skill" ;
+    rdfs:comment "A skill defined in the SFIA framework" .
+
+sfia:Level rdf:type owl:Class ;
+    rdfs:label "SFIA Level" ;
+    rdfs:comment "A competency level in the SFIA framework" .
+
+sfia:Attribute rdf:type owl:Class ;
+    rdfs:label "SFIA Attribute" ;
+    rdfs:comment "A SFIA attribute such as autonomy, influence, complexity" .
+
+sfia:Role rdf:type owl:Class ;
+    rdfs:label "Professional Role" ;
+    rdfs:comment "A professional role that requires specific SFIA skills" .
+
+sfia:CareerPath rdf:type owl:Class ;
+    rdfs:label "Career Path" ;
+    rdfs:comment "A progression path between professional roles" .
+
+# Properties
+sfia:hasCode rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range xsd:string ;
+    rdfs:label "has code" .
+
+sfia:hasTitle rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range xsd:string ;
+    rdfs:label "has title" .
+
+sfia:hasDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range xsd:string ;
+    rdfs:label "has description" .
+
+sfia:hasLevel rdf:type owl:ObjectProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range sfia:Level ;
+    rdfs:label "has level" .
+
+sfia:levelNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Level ;
+    rdfs:range xsd:integer ;
+    rdfs:label "level number" .
+
+sfia:levelDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Level ;
+    rdfs:range xsd:string ;
+    rdfs:label "level description" .
+
+sfia:requiresSkill rdf:type owl:ObjectProperty ;
+    rdfs:domain sfia:Role ;
+    rdfs:range sfia:Skill ;
+    rdfs:label "requires skill" .
+
+sfia:requiredLevel rdf:type owl:DatatypeProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range xsd:integer ;
+    rdfs:label "required level" .
+
+sfia:relatedTo rdf:type owl:ObjectProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range sfia:Skill ;
+    rdfs:label "related to" ;
+    owl:symmetric true .
+
+sfia:prerequisiteFor rdf:type owl:ObjectProperty ;
+    rdfs:domain sfia:Skill ;
+    rdfs:range sfia:Skill ;
+    rdfs:label "prerequisite for" .
+
+sfia:progressesTo rdf:type owl:ObjectProperty ;
+    rdfs:domain sfia:Role ;
+    rdfs:range sfia:Role ;
+    rdfs:label "progresses to" .
+
+# SFIA Skills Instances
+# ====================
+
+sfiaSkill:PROG rdf:type sfia:Skill ;
+    sfia:hasCode "PROG" ;
+    sfia:hasTitle "Programming/software development" ;
+    sfia:hasDescription "The planning, design, creation, amendment, verification, testing and documentation of new and amended software components from supplied specifications in accordance with agreed standards." ;
+    sfia:relatedTo sfiaSkill:ARCH , sfiaSkill:TEST , sfiaSkill:REQM .
+
+sfiaSkill:ARCH rdf:type sfia:Skill ;
+    sfia:hasCode "ARCH" ;
+    sfia:hasTitle "Solution architecture" ;
+    sfia:hasDescription "The design and communication of high-level structures to enable and guide the design and development of integrated information and technology solutions." ;
+    sfia:relatedTo sfiaSkill:PROG , sfiaSkill:REQM , sfiaSkill:RLMT .
+
+sfiaSkill:RLMT rdf:type sfia:Skill ;
+    sfia:hasCode "RLMT" ;
+    sfia:hasTitle "Relationship management" ;
+    sfia:hasDescription "The identification, analysis, management and monitoring of relationships with and between stakeholders." ;
+    sfia:relatedTo sfiaSkill:ARCH , sfiaSkill:REQM .
+
+sfiaSkill:REQM rdf:type sfia:Skill ;
+    sfia:hasCode "REQM" ;
+    sfia:hasTitle "Requirements definition and management" ;
+    sfia:hasDescription "The elicitation, analysis, specification, validation and management of requirements." ;
+    sfia:relatedTo sfiaSkill:PROG , sfiaSkill:ARCH , sfiaSkill:TEST .
+
+sfiaSkill:TEST rdf:type sfia:Skill ;
+    sfia:hasCode "TEST" ;
+    sfia:hasTitle "Testing" ;
+    sfia:hasDescription "The planning, design, management, execution and reporting of tests using appropriate testing tools and techniques." ;
+    sfia:relatedTo sfiaSkill:PROG , sfiaSkill:REQM .
+
+sfiaSkill:DTAN rdf:type sfia:Skill ;
+    sfia:hasCode "DTAN" ;
+    sfia:hasTitle "Data analysis" ;
+    sfia:hasDescription "The investigation, evaluation, interpretation and classification of data." ;
+    sfia:relatedTo sfiaSkill:PROG .
+
+sfiaSkill:PROV rdf:type sfia:Skill ;
+    sfia:hasCode "PROV" ;
+    sfia:hasTitle "Service provisioning" ;
+    sfia:hasDescription "The provision of services to enable operation of products and systems." .
+
+# SFIA Levels
+# ===========
+
+sfiaLevel:L1 rdf:type sfia:Level ;
+    sfia:levelNumber 1 ;
+    rdfs:label "Follow" ;
+    sfia:levelDescription "Works under close direction. Uses little discretion." .
+
+sfiaLevel:L2 rdf:type sfia:Level ;
+    sfia:levelNumber 2 ;
+    rdfs:label "Assist" ;
+    sfia:levelDescription "Works under general direction. Uses limited discretion." .
+
+sfiaLevel:L3 rdf:type sfia:Level ;
+    sfia:levelNumber 3 ;
+    rdfs:label "Apply" ;
+    sfia:levelDescription "Works under broad direction. Uses discretion in identifying and responding to complex issues." .
+
+sfiaLevel:L4 rdf:type sfia:Level ;
+    sfia:levelNumber 4 ;
+    rdfs:label "Enable" ;
+    sfia:levelDescription "Works under general direction within a clear framework. Influences others." .
+
+sfiaLevel:L5 rdf:type sfia:Level ;
+    sfia:levelNumber 5 ;
+    rdfs:label "Ensure/Advise" ;
+    sfia:levelDescription "Works under broad direction. Has significant influence over the allocation of resources." .
+
+sfiaLevel:L6 rdf:type sfia:Level ;
+    sfia:levelNumber 6 ;
+    rdfs:label "Initiate/Influence" ;
+    sfia:levelDescription "Determines policy and strategy. Has very significant influence." .
+
+sfiaLevel:L7 rdf:type sfia:Level ;
+    sfia:levelNumber 7 ;
+    rdfs:label "Set strategy/Inspire" ;
+    sfia:levelDescription "Has ultimate responsibility for strategy. Influences industry leaders." .
+
+# Professional Roles
+# ==================
+
+sfia:SoftwareDeveloper rdf:type sfia:Role ;
+    rdfs:label "Software Developer" ;
+    sfia:requiresSkill sfiaSkill:PROG ;
+    sfia:progressesTo sfia:SeniorDeveloper .
+
+sfia:SeniorDeveloper rdf:type sfia:Role ;
+    rdfs:label "Senior Software Developer" ;
+    sfia:requiresSkill sfiaSkill:PROG , sfiaSkill:TEST ;
+    sfia:progressesTo sfia:TechLead , sfia:SoftwareArchitect .
+
+sfia:TechLead rdf:type sfia:Role ;
+    rdfs:label "Technical Lead" ;
+    sfia:requiresSkill sfiaSkill:PROG , sfiaSkill:RLMT , sfiaSkill:ARCH ;
+    sfia:progressesTo sfia:SoftwareArchitect .
+
+sfia:SoftwareArchitect rdf:type sfia:Role ;
+    rdfs:label "Software Architect" ;
+    sfia:requiresSkill sfiaSkill:ARCH , sfiaSkill:PROG , sfiaSkill:RLMT , sfiaSkill:REQM ;
+    sfia:progressesTo sfia:PrincipalArchitect .
+
+sfia:PrincipalArchitect rdf:type sfia:Role ;
+    rdfs:label "Principal Architect" ;
+    sfia:requiresSkill sfiaSkill:ARCH , sfiaSkill:RLMT , sfiaSkill:REQM .
+
+# Skill Relationships and Prerequisites
+# ====================================
+
+sfiaSkill:PROG sfia:prerequisiteFor sfiaSkill:ARCH .
+sfiaSkill:REQM sfia:prerequisiteFor sfiaSkill:ARCH .
+sfiaSkill:PROG sfia:prerequisiteFor sfiaSkill:TEST .
