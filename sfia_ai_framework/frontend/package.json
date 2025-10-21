@@ -1,7 +1,7 @@
 {
-  "name": "intellisfia-frontend",
-  "version": "1.0.0",
-  "description": "IntelliSFIA Frontend - Comprehensive web interface for intelligent SFIA framework",
+  "name": "intellisfia-ai-frontend",
+  "version": "2.0.0",
+  "description": "IntelliSFIA AI Framework Frontend - Enhanced React application with CrewAI multi-agent integration",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
