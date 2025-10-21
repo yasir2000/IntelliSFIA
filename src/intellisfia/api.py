@@ -57,11 +57,20 @@ try:
     # Try to use the new Multi-LLM system
     MULTI_LLM_AVAILABLE = True
     logger.info("Multi-LLM provider system available")
+    
+    # Initialize multi-LLM manager
+    from .llm_providers import create_llm_manager
+    llm_manager = create_llm_manager()
+    
 except ImportError as e:
     # Fallback to original Ollama service
-    from ollama_service import OllamaService, OllamaConfig, IntelliSFIAAgent
-    MULTI_LLM_AVAILABLE = False
-    logger.warning(f"Multi-LLM system not available, using Ollama fallback: {e}")
+    try:
+        from .ollama_service import OllamaService, OllamaConfig, IntelliSFIAAgent
+        MULTI_LLM_AVAILABLE = False
+        logger.warning(f"Multi-LLM system not available, using Ollama fallback: {e}")
+    except ImportError as e2:
+        logger.error(f"Neither multi-LLM nor Ollama service available: {e2}")
+        MULTI_LLM_AVAILABLE = False
 
 # ========================
 # Data Models
