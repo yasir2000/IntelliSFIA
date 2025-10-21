@@ -4,12 +4,13 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "es6"
+      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "ignoreDeprecations": "6.0",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -18,9 +19,36 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "declaration": false,
+    "incremental": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/services/*": ["src/services/*"],
+      "@/utils/*": ["src/utils/*"]
+    }
   },
   "include": [
-    "src"
+    "src/**/*",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "src/global.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }
