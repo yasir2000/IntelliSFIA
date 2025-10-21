@@ -7,13 +7,14 @@ from rdflib import Graph
 from sfia_rdf import namespaces
 from sfia_rdf.parsers import skills_parser, levels_parser, attributes_parser
 
-SFIA_SKILLS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/SKILLS_250129.csv"
-SFIA_ATTRIBUTES_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/ATTRIBUTES_250129.csv"
-SFIA_LEVELS_SHEET = os.path.expanduser('~') + "/Desktop/SFIA/LEVELS_250129.csv"
+# Use test files for demo purposes
+SFIA_SKILLS_SHEET = "sfia_rdf/tests/test_files/skills_test.csv"
+SFIA_ATTRIBUTES_SHEET = "sfia_rdf/tests/test_files/attributes_test.csv"
+SFIA_LEVELS_SHEET = "sfia_rdf/tests/test_files/levels_test.csv"
 
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
-OUTPUT = os.path.expanduser('~') + f"/Desktop/SFIA/SFIA_9_{TODAY}.ttl"
+OUTPUT = f"SFIA_9_{TODAY}.ttl"
 
 DELIMITER = ","
 QUOTE_CHAR = '"'

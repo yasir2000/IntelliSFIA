@@ -1,0 +1,139 @@
+# Enterprise Integration Configuration Example
+# This file shows how to configure IntelliSFIA for enterprise system integration
+
+systems:
+  # SAP ERP Integration
+  sap_production:
+    type: "sap"
+    credentials:
+      system_type: "sap"
+      endpoint: "https://sap.company.com:8443"
+      username: "SFIA_USER"
+      password: "${SAP_PASSWORD}"  # Use environment variable
+    config:
+      client: "100"
+      language: "EN"
+      timeout: 30
+
+  # Microsoft Power BI Integration
+  powerbi_analytics:
+    type: "powerbi"
+    credentials:
+      system_type: "powerbi"
+      endpoint: "https://api.powerbi.com/v1.0/myorg"
+      token: "${POWERBI_TOKEN}"  # Use environment variable
+    config:
+      employee_dataset_id: "12345678-1234-1234-1234-123456789abc"
+      activities_dataset_id: "87654321-4321-4321-4321-cba987654321"
+      performance_dataset_id: "abcdef12-3456-7890-abcd-ef1234567890"
+
+  # SQL Database Integration
+  hr_database:
+    type: "database"
+    credentials:
+      system_type: "postgresql"
+      connection_string: "postgresql://user:${DB_PASSWORD}@localhost:5432/hr_db"
+    config:
+      schema: "hr"
+      timeout: 15
+
+  # MongoDB Integration for Document Storage
+  activity_logs:
+    type: "mongodb"
+    credentials:
+      system_type: "mongodb"
+      connection_string: "mongodb://localhost:27017/activity_db"
+    config:
+      database: "intellisfia"
+      employees_collection: "employees"
+      activities_collection: "task_activities"
+      performance_collection: "performance_metrics"
+
+  # Kafka Real-time Streaming
+  kafka_streaming:
+    type: "kafka"
+    credentials:
+      system_type: "kafka"
+      endpoint: "localhost:9092"
+    config:
+      group_id: "intellisfia-consumer"
+      topics: ["employee_activities", "performance_updates", "task_completions"]
+      auto_offset_reset: "latest"
+
+# Real-time Processing Configuration
+real_time_enabled: true
+batch_interval: 1800  # 30 minutes
+cache_ttl: 3600  # 1 hour
+max_concurrent_connections: 5
+retry_attempts: 3
+retry_delay: 5
+
+# Analysis Engine Configuration
+analysis_config:
+  redis_url: "redis://localhost:6379"
+  model_cache_ttl: 86400  # 24 hours
+  confidence_threshold: 0.7
+  min_activities_for_analysis: 5
+  lookback_days: 90
+  
+  # Activity Weights
+  activity_weights:
+    complexity_weight: 0.25
+    impact_weight: 0.20
+    quality_weight: 0.15
+    time_efficiency_weight: 0.15
+    skills_breadth_weight: 0.10
+    innovation_weight: 0.10
+    leadership_weight: 0.05
+
+  # SFIA Level Thresholds
+  sfia_thresholds:
+    level_1:
+      autonomy_score: 0.1
+      influence_score: 0.0
+      complexity_score: 0.2
+      business_skills_score: 0.1
+      required_experience: 0
+      min_performance_threshold: 0.6
+    level_2:
+      autonomy_score: 0.2
+      influence_score: 0.1
+      complexity_score: 0.3
+      business_skills_score: 0.2
+      required_experience: 1
+      min_performance_threshold: 0.65
+    level_3:
+      autonomy_score: 0.4
+      influence_score: 0.2
+      complexity_score: 0.5
+      business_skills_score: 0.3
+      required_experience: 2
+      min_performance_threshold: 0.7
+    level_4:
+      autonomy_score: 0.6
+      influence_score: 0.4
+      complexity_score: 0.6
+      business_skills_score: 0.5
+      required_experience: 4
+      min_performance_threshold: 0.75
+    level_5:
+      autonomy_score: 0.7
+      influence_score: 0.6
+      complexity_score: 0.7
+      business_skills_score: 0.6
+      required_experience: 6
+      min_performance_threshold: 0.8
+    level_6:
+      autonomy_score: 0.8
+      influence_score: 0.7
+      complexity_score: 0.8
+      business_skills_score: 0.7
+      required_experience: 8
+      min_performance_threshold: 0.85
+    level_7:
+      autonomy_score: 0.9
+      influence_score: 0.8
+      complexity_score: 0.9
+      business_skills_score: 0.8
+      required_experience: 10
+      min_performance_threshold: 0.9

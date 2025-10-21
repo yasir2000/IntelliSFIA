@@ -1,0 +1,434 @@
+[
+  {
+    "code": "AUTO",
+    "url": "https://sfia-online.org/en/shortcode/9/AUTO",
+    "name": "Autonomy",
+    "type": "Attributes",
+    "description": "The level of independence, discretion and accountability for results in your role.",
+    "guidance_notes": "Autonomy in SFIA represents a progression from following instructions to setting organizational strategy. It involves:\n\nworking under varying levels of direction and supervision\nmaking independent decisions in line with responsibility\ntaking accountability for actions and their outcomes\ndelegating tasks and responsibilities appropriately\nsetting personal, team, or organizational goals.\n\nEffective autonomy encompasses decision-making skills, self-management and the ability to balance independence with organizational goals. Autonomy is closely linked with skills such as decision-making, leadership, and planning.\nAs professionals advance, their level of autonomy increasingly shapes their ability to drive change, innovate and contribute to organizational success. As professionals advance, their autonomy enables them to lead initiatives and drive strategic outcomes.  At higher levels, individuals shape their role and make decisions that have a wider organizational impact, with minimal supervision.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Follows instructions and works under close direction. Receives specific instructions and guidance, has work closely reviewed.",
+      "2": "Works under routine direction. Receives instructions and guidance, has work regularly reviewed.",
+      "3": "Works under general direction to complete assigned tasks. Receives guidance and has work reviewed at agreed milestones. When required, delegates routine tasks to others within own team.",
+      "4": "Works under general direction within a clear framework of accountability. Exercises considerable personal responsibility and autonomy. When required, plans, schedules, and delegates work to others, typically within own team.",
+      "5": "Works under broad direction. Work is self-initiated, consistent with agreed operational and budgetary requirements for meeting allocated technical and/or group objectives. Defines tasks and delegates work to teams and individuals within area of responsibility.",
+      "6": "Guides high level decisions and strategies within the organizations overall policies and objectives. Has defined authority and accountability for actions and decisions within a significant area of work, including technical, financial and quality aspects. Delegates responsibility for operational objectives.",
+      "7": "Defines and leads the organizations vision and strategy within over-arching business objectives. Is fully accountable for actions taken and decisions made, both by self and others to whom responsibilities have been assigned. Delegates authority and responsibility for strategic business objectives."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "INFL",
+    "url": "https://sfia-online.org/en/shortcode/9/INFL",
+    "name": "Influence",
+    "type": "Attributes",
+    "description": "The reach and impact of your decisions and actions, both within and outside the organization.",
+    "guidance_notes": "Influence in SFIA reflects a progression from impacting immediate colleagues to shaping organizational direction. It involves:\n\nexpanding the sphere of interaction and impact\nprogressing from transactional to strategic interactions\nengaging with stakeholders, both internal and external, at increasing levels of seniority\nshaping decisions with growing organizational impact\ncontributing to team, departmental and organizational direction.\n\nInfluence is closely linked with other attributes such as, communication and leadership. Effective influence develops through experience and interaction with more senior levels of the organization and industry. This attribute reflects the reach and impact of decisions and actions, both within and outside the organization. \nAs professionals advance, their influence extends beyond their team, contributing to strategic decisions and helping shape the organizations direction. It progresses from awareness of how one's work supports others to directing strategy at an organizational level. The extent of influence is often reflected in the nature of interactions, the level of contacts and the impact of decisions on organizational direction.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "When required, contributes to team discussions with immediate colleagues.",
+      "2": "Is expected to contribute to team discussions with immediate team members. Works alongside team members, contributing to team decisions. When the role requires, interacts with people outside their team, including internal colleagues and external contacts.",
+      "3": "Works with and influences team decisions. Has a transactional level of contact with people outside their team, including internal colleagues and external contacts.",
+      "4": "Influences projects and team objectives. Has a tactical level of contact with people outside their team, including internal colleagues and external contacts.",
+      "5": "Influences critical decisions in their domain.  Has operational level contact impacting execution and implementation with internal colleagues and external contacts. Has significant influence over the allocation and management of resources required to deliver projects.",
+      "6": "Influences the formation of strategy and the execution of business plans. Has a significant management level of contact with internal colleagues and external contacts. Has organizational leadership and influence over the appointment and management of resources related to the implementation of strategic initiatives.",
+      "7": "Directs, influences and inspires the strategic direction and development of the organization. Has an extensive leadership level of contact with internal colleagues and external contacts. Authorises the appointment of required resources."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "COMP",
+    "url": "https://sfia-online.org/en/shortcode/9/COMP",
+    "name": "Complexity",
+    "type": "Attributes",
+    "description": "The range and intricacy of tasks and responsibilities that come with your role.",
+    "guidance_notes": "Complexity in SFIA represents a progression from routine tasks to strategic leadership delivering business value. It involves:\n\nhandling increasingly varied and unpredictable work environments\naddressing a growing range of technical or professional activities\nsolving progressively complex problems\nmanaging diverse stakeholders\ncontributing to policy and strategy\nleveraging emerging technologies for business value.\n\nEffective management of complexity encompasses skills in problem solving, decision making and planning alongside technical or professional expertise.  This attribute reflects the range and intricacy of tasks and responsibilities in a role, progressing from routine activities to extensive strategic leadership. It can be measured by the level of problem-solving required, the nature and number of stakeholders involved, and the impact of decisions made.\nAs professionals advance, their ability to navigate and leverage complexity increasingly contributes to organizational innovation, efficiency and competitive advantage.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Performs routine activities in a structured environment.",
+      "2": "Performs a range of work activities in varied environments.",
+      "3": "Performs a range of work, sometimes complex and non-routine, in varied environments.",
+      "4": "Work includes a broad range of complex technical or professional activities in varied contexts.",
+      "5": "Performs an extensive range of complex technical and/or professional work activities, requiring the application of fundamental principles in a range of unpredictable contexts.",
+      "6": "Performs highly complex work activities covering technical, financial and quality aspects.",
+      "7": "Performs extensive strategic leadership in delivering business value through vision, governance and executive management."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "KNGE",
+    "url": "https://sfia-online.org/en/shortcode/9/KNGE",
+    "name": "Knowledge",
+    "type": "Attributes",
+    "description": "The depth and breadth of understanding required to perform and influence work effectively.",
+    "guidance_notes": "Knowledge in SFIA represents a progression from applying basic role-specific information to leveraging broad, strategic understanding that shapes organizational direction and industry trends. It involves:\n\napplying role-specific knowledge to perform routine tasks\nintegrating general, role-specific, and industry knowledge\nusing understanding of technologies, methods, and processes to achieve results\napplying in-depth expertise to solve complex problems\nleveraging broad knowledge to influence strategic decisions\nshaping organizational knowledge management practices.\n\nEffective knowledge application develops through practical experience, formal education, professional training, continuous learning, and mentorship. It encompasses the ability to apply understanding in real-world scenarios, adapt to emerging challenges, and create value for the organization.\nAs professionals advance, their application of knowledge evolves significantly from basic, role-specific tasks to strategic organizational leadership. This progression involves supporting team activities, applying practices within business contexts, integrating knowledge for complex tasks, offering authoritative advice, and enabling cross-domain decision-making. At higher levels, professionals apply broad business and strategic knowledge to shape organizational strategy and anticipate industry trends.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Applies basic knowledge to perform routine, well-defined, predictable role-specific tasks.",
+      "2": "Applies knowledge of common workplace tasks and practices to support team activities under guidance.",
+      "3": "Applies knowledge of a range of role-specific practices to complete tasks within defined boundaries and has an appreciation of how this knowledge applies to the wider business context.",
+      "4": "Applies knowledge across different areas in their field, integrating this knowledge to perform complex and diverse tasks. Applies a working knowledge of the organizations domain.",
+      "5": "Applies knowledge to interpret complex situations and offer authoritative advice. Applies in-depth expertise in specific fields, with a broader understanding across industry/business.",
+      "6": "Applies broad business knowledge to enable strategic leadership and decision-making across various domains.",
+      "7": "Applies strategic and broad-based knowledge to shape organizational strategy, anticipate future industry trends, and prepare the organization to adapt and lead."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "COLL",
+    "url": "https://sfia-online.org/en/shortcode/9/COLL",
+    "name": "Collaboration",
+    "type": "Business skills/Behavioural factors",
+    "description": "Working effectively with others, sharing resources and coordinating efforts to achieve shared objectives.",
+    "guidance_notes": "Collaboration in SFIA represents a progression from basic team interaction to strategic partnerships and stakeholder management. It involves:\n\nworking cooperatively within immediate teams\nsharing information and resources effectively\ncoordinating efforts to achieve common goals\nfacilitating cross-functional teamwork\nbuilding influential relationships across the organization\nestablishing and managing strategic partnerships.\n\nEffective collaboration encompasses communication, perspective-taking, and the ability to align diverse viewpoints towards common objectives. It also involves creating an environment that encourages knowledge sharing and collective problem-solving.\nAs professionals advance, their collaborative skills evolve from supporting team goals to shaping organizational culture, driving innovation, and enhancing the organization's ability to navigate complex challenges. At higher levels, collaboration extends to influencing industry-wide cooperation and partnerships.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Works mostly on their own tasks and interacts with their immediate team only. Develops an understanding of how their work supports others.",
+      "2": "Understands the need to collaborate with their team and considers user/customer needs.",
+      "3": "Understands and collaborates on the analysis of user/customer needs and represents this in their work.",
+      "4": "Facilitates collaboration between stakeholders who share common objectives.  \nEngages with and contributes to the work of cross-functional teams to ensure that user/customer needs are being met throughout the deliverable/scope of work.",
+      "5": "Facilitates collaboration between stakeholders who have diverse objectives.\nEnsures collaborative ways of working throughout all stages of work to meet user/customer needs.\nBuilds effective relationships across the organization and with customers, suppliers and partners.",
+      "6": "Leads collaboration with a diverse range of stakeholders across competing objectives within the organization.\nBuilds strong, influential connections with key internal and external contacts at senior management/technical leader level",
+      "7": "Drives collaboration, engaging with leadership stakeholders ensuring alignment to corporate vision and strategy. \nBuilds strong, influential relationships with customers, partners and industry leaders."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "COMM",
+    "url": "https://sfia-online.org/en/shortcode/9/COMM",
+    "name": "Communication",
+    "type": "Business skills/Behavioural factors",
+    "description": "Exchanging information, ideas and insights clearly to enable mutual understanding and cooperation.",
+    "guidance_notes": "Communication in SFIA represents a progression from basic team interaction to complex, organization-wide influence and external engagement. It involves:\n\ncommunicating within immediate teams\nexchanging information and ideas clearly\nverbal and written skills, active listening, and the ability to use communication tools and platforms appropriately\nadapting communication style to diverse audiences, both technical and non-technical\narticulating complex concepts in a way that enables informed decision-making\ninfluencing strategy through effective dialogue with senior stakeholders.\n\nAs professionals advance, their communication skills evolve from simple information sharing within teams to influencing decisions at the highest levels of an organization. This progression involves adapting communication to different audiences, including senior stakeholders and external partners, and shaping strategic outcomes through effective dialogue. At higher levels, professionals take on the responsibility of using communication to drive organizational direction and engage with industry leaders to achieve business objectives.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Communicates with immediate team to understand and deliver on their assigned tasks. Observes, listens, and with encouragement, asks questions to seek information or clarify instructions.",
+      "2": "Communicates familiar information with immediate team and stakeholders directly related to their role.\nListens to gain understanding and asks relevant questions to clarify or seek further information.",
+      "3": "Communicates with team and stakeholders inside and outside the organization clearly explaining and presenting information.\nContributes to a range of work-related conversations and listens to others to gain an understanding and asks probing questions relevant to their role.",
+      "4": "Communicates with both technical and non-technical audiences including team and stakeholders inside and outside the organization.\nAs required, takes the lead in explaining complex concepts to support decision making.\nListens and asks insightful questions to identify different perspectives to clarify and confirm understanding.",
+      "5": "Communicates clearly with impact, articulating complex information and ideas to broad audiences with different viewpoints.\nLeads and encourages conversations to share ideas and build consensus on actions to be taken.",
+      "6": "Communicates with credibility at all levels across the organization to broad audiences with divergent objectives.\nExplains complex information and ideas clearly, influencing the strategic direction.\nPromotes information sharing across the organization.",
+      "7": "Communicates to audiences at all levels within own organization and engages with industry.\nPresents compelling arguments and ideas authoritatively and convincingly to achieve business objectives."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "IMPM",
+    "url": "https://sfia-online.org/en/shortcode/9/IMPM",
+    "name": "Improvement mindset",
+    "type": "Business skills/Behavioural factors",
+    "description": "Continuously identifying opportunities to refine work practices, processes, products, or services for greater efficiency and impact.",
+    "guidance_notes": "Having an improvement mindset in SFIA represents a progression from recognizing opportunities for enhancement to driving a culture of ongoing optimization. It involves:\n\nidentifying areas for improvement in processes, products, or services\nimplementing changes to enhance efficiency and effectiveness\nassessing the impact of improvements and refining approaches\nencouraging and supporting a mindset of continuous improvement in others\naligning improvement initiatives with organizational objectives\ncultivating a culture of ongoing enhancement and optimization\n\nAn improvement mindset involves proactively seeking opportunities to refine and optimize work practices, processes, products, and services. This reflects the growing responsibility to identify, implement, and lead improvements across increasing scopes of influence.As professionals advance, their focus shifts from identifying opportunities for improvement in their own tasks to leading improvement initiatives across teams and the organization. This progression includes enhancing practices at a personal level, supporting others in promoting a culture of continuous optimization, and ensuring improvement efforts align with broader organizational goals. At higher levels, professionals take responsibility for embedding ongoing improvement strategies throughout the organization, driving long-term impact.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Identifies opportunities for improvement in own tasks. Suggests basic enhancements when prompted.",
+      "2": "Proposes ideas to improve own work area.\n\nImplements agreed changes to assigned work tasks.",
+      "3": "Identifies and implements improvements in own work area.\nContributes to team-level process enhancements.",
+      "4": "Encourages and supports team discussions on improvement initiatives.\n\nImplements procedural changes within a defined scope of work.",
+      "5": "Identifies and evaluates potential improvements to products, practices, or services.\nLeads implementation of enhancements within own area of responsibility.\nAssesses effectiveness of implemented changes.",
+      "6": "Drives improvement initiatives that have a significant impact on the organization.\nAligns improvement strategies with organizational objectives.\nEngages stakeholders in improvement processes.",
+      "7": "Defines and communicates the organizational approach to continuous improvement.\nCultivates a culture of ongoing enhancement.\nEvaluates the impact of improvement initiatives on organizational success."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "CRTY",
+    "url": "https://sfia-online.org/en/shortcode/9/CRTY",
+    "name": "Creativity",
+    "type": "Business skills/Behavioural factors",
+    "description": "Generating and applying innovative ideas to enhance processes, solve problems and drive organizational success.",
+    "guidance_notes": "Creativity in SFIA represents a progression from basic idea generation to driving strategic innovation. It involves:\n\ngenerating novel ideas and solutions\napplying innovative thinking to improve processes\nsolving complex problems creatively\nencouraging and facilitating creative thinking in others\ndeveloping a culture of innovation\naligning creative initiatives with organizational strategy.\n\nEffective creativity encompasses imaginative thinking, problem-solving skills and challenging conventional approaches. It thrives in environments that encourage calculated risk-taking and value innovative ideas.\nAs professionals advance, their role shifts from contributing to creative processes to inspiring and leading innovation at a strategic level. This evolution underscores the growing importance of creative thinking in driving organizational success and navigating complex challenges across various disciplines.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Participates in the generation of new ideas when prompted.",
+      "2": "Applies creative thinking to suggest new ways to approach a task and solve problems.",
+      "3": "Applies and contributes to creative thinking techniques to contribute new ideas for their own work and for team activities.",
+      "4": "Applies, facilitates and develops creative thinking concepts and finds alternative ways to approach team outcomes.",
+      "5": "Creatively applies innovative thinking and design practices in identifying solutions that will deliver value for the benefit of the customer/stakeholder.",
+      "6": "Creatively applies a wide range of new ideas and effective management techniques to achieve results that align with organizational strategy.",
+      "7": "Champions creativity and innovation in driving strategy development to enable business opportunities."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "DECM",
+    "url": "https://sfia-online.org/en/shortcode/9/DECM",
+    "name": "Decision-making",
+    "type": "Business skills/Behavioural factors",
+    "description": "Applying critical thinking to evaluate options, assess risks and select the most appropriate course of action.",
+    "guidance_notes": "Decision making in SFIA represents a progression from routine choices to strategic, high-impact decisions. It involves:\n\nevaluating information and assessing risks\nbalancing intuition and logic\nunderstanding organizational context\ndetermining the best course of action\ntaking accountability for outcomes.\n\nEffective decision making encompasses analytical and critical thinking skills, the ability to assess risks and consequences, and a comprehensive understanding of business context. It also involves knowing when to escalate issues and how to balance competing priorities.\nAs professionals advance, their decision-making evolves from addressing routine issues to shaping strategic directions. Early on, decisions focus on managing tasks or small projects. Over time, decision-making becomes more complex, requiring greater judgement, risk assessment, and accountability for high-impact outcomes. At higher levels, professionals are responsible for making critical decisions that influence organizational strategy and success.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Uses little discretion in attending to enquiries.  \nIs expected to seek guidance in unexpected situations.",
+      "2": "Uses limited discretion in resolving issues or enquiries.\nDecides when to seek guidance in unexpected situations.",
+      "3": "Uses discretion in identifying and responding to complex issues related to own assignments. \nDetermines when issues should be escalated to a higher level.",
+      "4": "Uses judgment and substantial discretion in identifying and responding to complex issues and assignments related to projects and team objectives.\nEscalates when scope is impacted.",
+      "5": "Uses judgement to make informed decisions on actions to achieve organizational outcomes such as meeting targets, deadlines, and budget.\nRaises issues when objectives are at risk.",
+      "6": "Uses judgement to make decisions that initiate the achievement of agreed strategic objectives including financial performance.\nEscalates when broader strategic direction is impacted.",
+      "7": "Uses judgement in making decisions critical to the organizational strategic direction and success.\nEscalates when business executive management input is required through established governance structures."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "DIGI",
+    "url": "https://sfia-online.org/en/shortcode/9/DIGI",
+    "name": "Digital mindset",
+    "type": "Business skills/Behavioural factors",
+    "description": "Embracing and effectively using digital tools and technologies to enhance performance and productivity.",
+    "guidance_notes": "Having a digital mindset in SFIA represents a progression from basic digital literacy to driving organizational digital strategy. It involves:\n\nunderstanding and applying digital technologies\nadapting to rapidly evolving digital landscapes\nusing digital tools, AI and data to enhance work processes\ndriving digital innovation and transformation\nunderstanding the implications of emerging technologies, including AI, and their potential to drive organizational change\nensuring digital governance and compliance.\n\nAn effective digital mindset encompasses continuous learning, adaptability and the ability to see how digital technologies can transform business models and strategies. It also involves understanding the implications of emerging technologies and their potential to drive organizational change.\nAs professionals advance, their digital mindset evolves from simply using digital tools to shaping and leading organizational digital strategies. Early in their careers, they focus on applying digital skills to their roles, but as they progress, they begin driving innovation and using emerging technologies to transform work processes. At higher levels, professionals are responsible for leading digital transformation, ensuring compliance with digital governance, and embedding a digital culture across the organization.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Has basic digital skills to learn and use applications, processes and tools for their role.",
+      "2": "Has sufficient digital skills for their role; understands and uses appropriate methods, tools, applications and processes.",
+      "3": "Explores and applies relevant digital tools and skills for their role.\nUnderstands and effectively applies appropriate methods, tools, applications and processes.",
+      "4": "Maximises the capabilities of applications for their role and evaluates and supports the use of new technologies and digital tools.\nSelects appropriately from, and assesses the impact of change to applicable standards, methods, tools, applications and processes relevant to own specialism.",
+      "5": "recognizes and evaluates the organizational impact of new technologies and digital services.\nImplements new and effective practices. \nAdvises on available standards, methods, tools, applications and processes relevant to group specialism(s) and can make appropriate choices from alternatives.",
+      "6": "Leads the enhancement of the organizations digital capabilities. \nIdentifies and endorses opportunities to adopt new technologies and digital services.\nLeads digital governance and compliance with relevant legislation and the need for products and services.",
+      "7": "Leads the development of the organizations digital culture and the transformational vision.  \nAdvances capability and/or exploitation of technology within one or more organizations through a deep understanding of the industry and the implications of emerging technologies.\nAccountable for assessing how laws and regulations impact organizational objectives and its use of digital, data and technology capabilities."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "LEAD",
+    "url": "https://sfia-online.org/en/shortcode/9/LEAD",
+    "name": "Leadership",
+    "type": "Business skills/Behavioural factors",
+    "description": "Guiding and influencing individuals or teams to align actions with strategic goals and drive positive outcomes.",
+    "guidance_notes": "Leadership in SFIA represents a progression from self-management to shaping organizational strategy. It involves:\n\ndemonstrating personal responsibility\ntaking ownership of work and development\nguiding and influencing others\ncontributing to team capabilities\naligning actions with organizational objectives\ninspiring and driving positive change.\n\nEffective leadership encompasses self-awareness, influence, understanding and inspiring and motivating others. It also involves strategic thinking, risk management and the capacity to align actions with long-term objectives.\nAs professionals advance, their leadership evolves from managing personal responsibilities to guiding teams and eventually shaping organizational strategy. Over time, they move beyond influencing teams to driving strategic outcomes, aligning policies with organizational goals, and managing risks on a broader scale. At higher levels, leadership plays a critical role in shaping organizational culture, driving innovation, and enhancing the organization's ability to navigate complex challenges and seize opportunities.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Proactively increases their understanding of their work tasks and responsibilities.",
+      "2": "Takes ownership to develop their work experience.",
+      "3": "Provides basic guidance and support to less experienced team members as needed.",
+      "4": "Leads, supports or guides team members.\nDevelops solutions for complex work activities related to assignments. \nDemonstrates an understanding of risk factors in their work.\nContributes specialist expertise to requirements definition in support of proposals.",
+      "5": "Provides leadership at an operational level.\nImplements and executes policies aligned to strategic plans.\nAssesses and evaluates risk.\nTakes all requirements into account when considering proposals.",
+      "6": "Provides leadership at an organizational level.\nContributes to the development and implementation of policy and strategy.\nUnderstands and communicates industry developments, and the role and impact of technology. \nManages and mitigates organizational risk.  \nBalances the requirements of proposals with the broader needs of the organization.",
+      "7": "Leads strategic management.\nApplies the highest level of leadership to the formulation and implementation of strategy.\nCommunicates the potential impact of emerging practices and technologies on organizations and individuals and assesses the risks of using or not using such practices and technologies. \nEstablishes governance to address business risk.\nEnsures proposals align with the strategic direction of the organization."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "LADV",
+    "url": "https://sfia-online.org/en/shortcode/9/LADV",
+    "name": "Learning and development",
+    "type": "Business skills/Behavioural factors",
+    "description": "Continuously acquiring new knowledge and skills to enhance personal and organizational performance.",
+    "guidance_notes": "Learning and professional development in SFIA represents a progression from personal skill enhancement to shaping organizational learning culture. It involves:\n\nacquiring and applying new knowledge\nidentifying and addressing skill gaps\nsharing learnings with colleagues\ndriving personal and team development\npromoting knowledge application for strategic goals\ninspiring a learning culture aligned with business objectives.\n\nEffective learning and professional development encompass formal education, experiential learning, self-directed study and the ability to critically assess and apply new information. It also involves maintaining awareness of emerging practices and industry trends, and aligning learning initiatives with strategic business objectives.As professionals advance, their approach to learning and development evolves from focusing on personal skill enhancement to driving team and organizational development. Over time, they move from applying new knowledge to leading efforts that shape a culture of learning, aligning development initiatives with strategic goals. At senior levels, professionals not only inspire a learning culture but also ensure that the organization has the necessary skills and capabilities to navigate industry changes and take advantage of opportunities.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Applies newly acquired knowledge to develop  skills for their role. Contributes to identifying own development opportunities.",
+      "2": "Absorbs and applies new information to tasks.\nrecognizes personal skills and knowledge gaps and seeks learning opportunities to address them.",
+      "3": "Absorbs and applies new information effectively with the ability to share learnings with colleagues.\nTakes the initiative in identifying and negotiating their own appropriate development opportunities.",
+      "4": "Rapidly absorbs and critically assesses new information and applies it effectively.\nMaintains an understanding of emerging practices and their application and takes responsibility for driving own and team members development opportunities.",
+      "5": "Uses their skills and knowledge to help establish the standards that others in the organization will apply.\nTakes the initiative to develop a wider breadth of knowledge across industry and/or business and identify and manage development opportunities in area of responsibility.",
+      "6": "Promotes the application of knowledge to support strategic imperatives.\nActively develops their strategic and technical leadership skills and leads the development of skills in their area of accountability.",
+      "7": "Inspires a learning culture to align with business objectives.   \nMaintains strategic insight into contemporary and emerging industry landscapes. \nEnsures the organization develops and mobilizes the full range of required skills and capabilities."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "PLAN",
+    "url": "https://sfia-online.org/en/shortcode/9/PLAN",
+    "name": "Planning",
+    "type": "Business skills/Behavioural factors",
+    "description": "Taking a systematic approach to organizing tasks, resources and timelines to meet defined goals.",
+    "guidance_notes": "Planning in SFIA represents a progression from organizing individual work to leading strategic planning across an organization. It involves: \n\nsetting objectives and determining timelines\norganizing tasks and allocating resources\naligning activities with larger goals\nadapting plans to changing circumstances\nmonitoring progress and evaluating outcomes\ninitiating and influencing strategic objectives.\n\nEffective planning encompasses analytical skills, foresight and the ability to balance multiple priorities. It also involves adaptability to respond to changing circumstances, and the capacity to align operational plans with strategic goals. As professionals advance, their planning skills increasingly shape organizational direction and performance.\nAs professionals advance, their planning responsibilities grow from managing personal or team tasks to driving organizational planning efforts. Over time, they progress from organizing their own work to setting strategic objectives that shape the direction of the organization. At higher levels, professionals take the lead in planning complex initiatives, ensuring alignment with strategic goals, and guiding organizational performance.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Confirms required steps for individual tasks.",
+      "2": "Plans own work within short time horizons in an organized way.",
+      "3": "organizes and keeps track of own work (and others where needed) to meet agreed timescales.",
+      "4": "Plans, schedules and monitors work to meet given personal and/or team objectives and processes, demonstrating an analytical approach to meet time and quality targets.",
+      "5": "Analyses, designs, plans, establishes milestones, and executes and evaluates work to time, cost and quality targets.",
+      "6": "Initiates and influences strategic objectives and assigns responsibilities.",
+      "7": "Plans and leads at the highest level of authority over all aspects of a significant area of work."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "PROB",
+    "url": "https://sfia-online.org/en/shortcode/9/PROB",
+    "name": "Problem-solving",
+    "type": "Business skills/Behavioural factors",
+    "description": "analyzing challenges, applying logical methods and developing effective solutions to overcome obstacles.",
+    "guidance_notes": "Problem solving in SFIA represents a progression from addressing routine issues to managing strategic challenges. It involves:\n\nrecognizing and understanding problems\nanalyzing potential solutions\nimplementing effective resolutions\nevaluating outcomes and learning from experiences\nanticipating and addressing potential issues proactively\naligning problem solving with organizational objectives.\n\nEffective problem solving encompasses analytical thinking, creativity and the ability to make informed decisions. It also involves collaboration with experts from various disciplines, particularly at senior levels.\nAs professionals advance, their problem-solving responsibilities grow from resolving routine issues to tackling complex, strategic challenges. Initially, they focus on methodical approaches to everyday problems, but over time, they develop the capacity to anticipate issues, evaluate a range of solutions, and address challenges that impact broader organizational objectives. At higher levels, professionals lead problem-solving efforts, ensuring that complex challenges are managed in alignment with long-term goals.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Works towards understanding the issue and seeks assistance in resolving unexpected problems.",
+      "2": "Investigates and resolves routine issues.",
+      "3": "Applies a methodical approach to investigate and evaluate options to resolve routine and moderately complex issues.",
+      "4": "Investigates the cause and impact, evaluates options and resolves a broad range of complex issues.",
+      "5": "Investigates complex issues to identify the root causes and impacts, assesses a range of solutions, and makes informed decisions on the best course of action, often in collaboration with other experts.",
+      "6": "Anticipates and leads in addressing problems and opportunities that may impact organizational objectives, establishing a strategic approach and allocating resources.",
+      "7": "Manages inter-relationships between impacted parties and strategic imperatives, recognizing the broader business context and drawing accurate conclusions when resolving problems."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "ADAP",
+    "url": "https://sfia-online.org/en/shortcode/9/ADAP",
+    "name": "Adaptability",
+    "type": "Business skills/Behavioural factors",
+    "description": "Adjusting to change and persisting through challenges at personal, team and organizational levels.",
+    "guidance_notes": "Adaptability and resilience in SFIA represent a progression from personal flexibility to shaping organizational agility. It involves:\n\nbeing open to change and new ways of working\nadjusting to different team dynamics and work requirements\nadopting new methods and technologies proactively\nenabling others to adapt to challenges\nleading teams through transitions\ndriving significant organizational changes\nembedding adaptability into organizational culture.\n\nEffective adaptability and resilience encompass openness to change, proactive learning and the ability to maintain focus on objectives during transitions. It also involves supporting others through change and creating an environment where innovation and flexibility thrive.\nAs professionals advance, their ability to drive and manage change increasingly shapes organizational resilience and long-term success in dynamic environments.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Accepts change and is open to new ways of working.",
+      "2": "Adjusts to different team dynamics and work requirements.\nParticipates in team adaptation processes.",
+      "3": "Adapts and is responsive to change and shows initiative in adopting new methods or technologies.",
+      "4": "Enables others to adapt and change in response to challenges and changes in the work environment.",
+      "5": "Leads adaptations to changing business environments.\nGuides teams through transitions, maintaining focus on organizational objectives.",
+      "6": "Drives organizational adaptability by initiating and leading significant changes. Influences change management strategies at an organizational level.",
+      "7": "Champions organizational agility and resilience.\nEmbeds adaptability into organizational culture and strategic planning."
+    },
+    "sfia_version": "9.0"
+  },
+  {
+    "code": "SCPE",
+    "url": "https://sfia-online.org/en/shortcode/9/SCPE",
+    "name": "Security, privacy and ethics",
+    "type": "Business skills/Behavioural factors",
+    "description": "Ensuring the protection of sensitive information, upholding privacy of data and individuals, and demonstrating ethical conduct within and outside the organization.",
+    "guidance_notes": "Security, privacy and ethics in SFIA represent a progression from basic awareness to strategic leadership. It involves:\n\napplying professional working practices and adhering to organizational rules\nimplementing standards and best practices\npromoting a culture of security, privacy and ethical conduct\naddressing ethical challenges, including those introduced by emerging technologies, such as AI\nensuring compliance with relevant laws and regulations\nleading initiatives that embed security, privacy, and ethics into organizational culture and operations.\n\nEffective management of security, privacy and ethics encompasses technical knowledge, ethical decision-making skills and the ability to balance competing priorities. It also involves creating an environment where these principles are embedded in all aspects of work.\nAs professionals advance, they are expected to take an active role in promoting ethical behavior and securing sensitive information across all areas of work. At higher levels, individuals are responsible for developing strategies that balance operational needs with ethical considerations, ensuring long-term sustainability and trust.",
+    "levels": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "level_descriptions": {
+      "1": "Develops an understanding of the rules and expectations of their role and the organization.",
+      "2": "Has a good understanding of their role and the organizations rules and expectations.",
+      "3": "Applies appropriate professionalism and working practices and knowledge to work.",
+      "4": "Adapts and applies applicable standards, recognizing their importance in achieving team outcomes.",
+      "5": "Contributes proactively to the implementation of professional working practices and helps promote a supportive organizational culture.",
+      "6": "Takes a leading role in promoting and ensuring appropriate culture and working practices, including the provision of equal access and opportunity to people with diverse abilities.",
+      "7": "Provides clear direction and strategic leadership for embedding compliance, organizational culture, and working practices, and actively promotes diversity and inclusivity."
+    },
+    "sfia_version": "9.0"
+  }
+]

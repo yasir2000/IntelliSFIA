@@ -1,0 +1,135 @@
+groups:
+  - name: intellisfia.recording_rules
+    interval: 30s
+    rules:
+      # HTTP request rate recordings
+      - record: intellisfia:http_requests:rate5m
+        expr: rate(http_requests_total[5m])
+        labels:
+          service: "{{ $labels.job }}"
+
+      - record: intellisfia:http_requests:rate1h
+        expr: rate(http_requests_total[1h])
+        labels:
+          service: "{{ $labels.job }}"
+
+      # HTTP error rate recordings
+      - record: intellisfia:http_errors:rate5m
+        expr: rate(http_requests_total{status=~"5.."}[5m])
+        labels:
+          service: "{{ $labels.job }}"
+
+      - record: intellisfia:http_error_ratio:rate5m
+        expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m])
+        labels:
+          service: "{{ $labels.job }}"
+
+      # Response time percentiles
+      - record: intellisfia:http_request_duration:p50_5m
+        expr: histogram_quantile(0.50, rate(http_request_duration_seconds_bucket[5m]))
+        labels:
+          service: "{{ $labels.job }}"
+
+      - record: intellisfia:http_request_duration:p95_5m
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+        labels:
+          service: "{{ $labels.job }}"
+
+      - record: intellisfia:http_request_duration:p99_5m
+        expr: histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m]))
+        labels:
+          service: "{{ $labels.job }}"
+
+      # Database performance recordings
+      - record: intellisfia:pg_connections:utilization
+        expr: pg_stat_database_numbackends / pg_settings_max_connections
+        labels:
+          service: postgresql
+
+      - record: intellisfia:pg_query_efficiency:ratio
+        expr: rate(pg_stat_database_tup_returned[5m]) / rate(pg_stat_database_tup_fetched[5m])
+        labels:
+          service: postgresql
+
+      # Redis performance recordings
+      - record: intellisfia:redis_memory:utilization
+        expr: redis_memory_used_bytes / redis_memory_max_bytes
+        labels:
+          service: redis
+
+      - record: intellisfia:redis_commands:rate5m
+        expr: rate(redis_commands_processed_total[5m])
+        labels:
+          service: redis
+
+      # System resource recordings
+      - record: intellisfia:cpu:utilization_5m
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+
+      - record: intellisfia:memory:utilization
+        expr: 1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)
+
+      - record: intellisfia:disk:utilization
+        expr: 1 - (node_filesystem_avail_bytes / node_filesystem_size_bytes)
+
+      # Container resource recordings
+      - record: intellisfia:container_cpu:utilization_5m
+        expr: rate(container_cpu_usage_seconds_total{name!=""}[5m])
+
+      - record: intellisfia:container_memory:utilization
+        expr: container_memory_usage_bytes{name!=""} / container_spec_memory_limit_bytes
+
+      # Application-specific recordings
+      - record: intellisfia:user_sessions:count
+        expr: sum(active_user_sessions)
+
+      - record: intellisfia:assessments:completion_rate_1h
+        expr: rate(completed_assessments_total[1h])
+
+      - record: intellisfia:skills:popularity_5m
+        expr: rate(skill_views_total[5m])
+
+      - record: intellisfia:api_calls:by_endpoint_5m
+        expr: sum(rate(http_requests_total[5m])) by (endpoint, method)
+
+      # Business metrics recordings
+      - record: intellisfia:daily_active_users
+        expr: count(count by (user_id) (increase(user_actions_total[24h])))
+
+      - record: intellisfia:skill_assessments:completion_time_p95
+        expr: histogram_quantile(0.95, rate(assessment_processing_duration_seconds_bucket[5m]))
+
+      - record: intellisfia:knowledge_graph:query_performance_p50
+        expr: histogram_quantile(0.50, rate(rdf_query_duration_seconds_bucket[5m]))
+
+      # Aggregated service health
+      - record: intellisfia:service:availability_5m
+        expr: avg(up) by (job)
+
+      - record: intellisfia:service:overall_health_score
+        expr: avg(up{job=~"api-gateway|sfia-engine|rdf-service|frontend"}) * 0.4 + avg(up{job="postgres-exporter"}) * 0.3 + avg(up{job="redis-exporter"}) * 0.2 + avg(up{job="nginx"}) * 0.1
+
+      # Load balancing metrics
+      - record: intellisfia:nginx:requests_per_second_5m
+        expr: rate(nginx_http_requests_total[5m])
+
+      - record: intellisfia:nginx:response_time_p95_5m
+        expr: histogram_quantile(0.95, rate(nginx_http_request_duration_seconds_bucket[5m]))
+
+      # Cache performance
+      - record: intellisfia:redis:hit_rate_5m
+        expr: rate(redis_keyspace_hits_total[5m]) / (rate(redis_keyspace_hits_total[5m]) + rate(redis_keyspace_misses_total[5m]))
+
+      # Queue metrics (if using RabbitMQ)
+      - record: intellisfia:rabbitmq:queue_depth
+        expr: sum(rabbitmq_queue_messages) by (queue)
+
+      - record: intellisfia:rabbitmq:message_rate_5m
+        expr: rate(rabbitmq_queue_messages_published_total[5m])
+
+      # Storage metrics
+      - record: intellisfia:minio:requests_rate_5m
+        expr: rate(minio_http_requests_duration_seconds_count[5m])
+
+      - record: intellisfia:minio:error_rate_5m
+        expr: rate(minio_http_requests_duration_seconds_count{status=~"5.."}[5m]) / rate(minio_http_requests_duration_seconds_count[5m])

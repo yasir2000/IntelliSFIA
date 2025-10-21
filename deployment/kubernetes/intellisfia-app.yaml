@@ -1,0 +1,492 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: intellisfia
+  labels:
+    name: intellisfia
+    environment: production
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: intellisfia-config
+  namespace: intellisfia
+data:
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  DATABASE_HOST: "postgres-service"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "intellisfia_prod"
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  GRAPHDB_URL: "http://graphdb-service:7200"
+  RABBITMQ_HOST: "rabbitmq-service"
+  RABBITMQ_PORT: "5672"
+  MINIO_ENDPOINT: "minio-service:9000"
+  PROMETHEUS_URL: "http://prometheus-service:9090"
+  JAEGER_ENDPOINT: "http://jaeger-service:14268"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: intellisfia-secrets
+  namespace: intellisfia
+type: Opaque
+data:
+  DATABASE_PASSWORD: aW50ZWxsaXNmaWFfcHJvZA== # intellisfia_prod (base64)
+  JWT_SECRET_KEY: eW91ci1zdXBlci1zZWNyZXQtand0LWtleS1oZXJl # your-super-secret-jwt-key-here (base64)
+  REDIS_PASSWORD: cmVkaXNfcGFzc3dvcmQ= # redis_password (base64)
+  GRAPHDB_PASSWORD: Z3JhcGhkYl9wYXNzd29yZA== # graphdb_password (base64)
+  RABBITMQ_PASSWORD: cmFiYml0bXFfcGFzc3dvcmQ= # rabbitmq_password (base64)
+  MINIO_SECRET_KEY: bWluaW9fc2VjcmV0X2tleQ== # minio_secret_key (base64)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intellisfia-frontend
+  namespace: intellisfia
+  labels:
+    app: intellisfia-frontend
+    component: frontend
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: intellisfia-frontend
+  template:
+    metadata:
+      labels:
+        app: intellisfia-frontend
+        component: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: intellisfia/frontend:latest
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: REACT_APP_API_URL
+          value: "/api"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intellisfia-frontend-service
+  namespace: intellisfia
+  labels:
+    app: intellisfia-frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: intellisfia-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intellisfia-api-gateway
+  namespace: intellisfia
+  labels:
+    app: intellisfia-api-gateway
+    component: backend
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: intellisfia-api-gateway
+  template:
+    metadata:
+      labels:
+        app: intellisfia-api-gateway
+        component: backend
+    spec:
+      containers:
+      - name: api-gateway
+        image: intellisfia/api-gateway:latest
+        ports:
+        - containerPort: 8000
+          name: http
+        envFrom:
+        - configMapRef:
+            name: intellisfia-config
+        - secretRef:
+            name: intellisfia-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        volumeMounts:
+        - name: app-logs
+          mountPath: /app/logs
+      volumes:
+      - name: app-logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intellisfia-api-gateway-service
+  namespace: intellisfia
+  labels:
+    app: intellisfia-api-gateway
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: intellisfia-api-gateway
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intellisfia-sfia-engine
+  namespace: intellisfia
+  labels:
+    app: intellisfia-sfia-engine
+    component: backend
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: intellisfia-sfia-engine
+  template:
+    metadata:
+      labels:
+        app: intellisfia-sfia-engine
+        component: backend
+    spec:
+      containers:
+      - name: sfia-engine
+        image: intellisfia/sfia-engine:latest
+        ports:
+        - containerPort: 8001
+          name: http
+        envFrom:
+        - configMapRef:
+            name: intellisfia-config
+        - secretRef:
+            name: intellisfia-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intellisfia-sfia-engine-service
+  namespace: intellisfia
+  labels:
+    app: intellisfia-sfia-engine
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8001
+    targetPort: 8001
+    protocol: TCP
+    name: http
+  selector:
+    app: intellisfia-sfia-engine
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intellisfia-rdf-service
+  namespace: intellisfia
+  labels:
+    app: intellisfia-rdf-service
+    component: backend
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: intellisfia-rdf-service
+  template:
+    metadata:
+      labels:
+        app: intellisfia-rdf-service
+        component: backend
+    spec:
+      containers:
+      - name: rdf-service
+        image: intellisfia/rdf-service:latest
+        ports:
+        - containerPort: 8002
+          name: http
+        envFrom:
+        - configMapRef:
+            name: intellisfia-config
+        - secretRef:
+            name: intellisfia-secrets
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8002
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8002
+          initialDelaySeconds: 10
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intellisfia-rdf-service-service
+  namespace: intellisfia
+  labels:
+    app: intellisfia-rdf-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8002
+    targetPort: 8002
+    protocol: TCP
+    name: http
+  selector:
+    app: intellisfia-rdf-service
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: intellisfia-ingress
+  namespace: intellisfia
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+spec:
+  tls:
+  - hosts:
+    - intellisfia.com
+    - www.intellisfia.com
+    secretName: intellisfia-tls
+  rules:
+  - host: intellisfia.com
+    http:
+      paths:
+      - path: /api/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-api-gateway-service
+            port:
+              number: 8000
+      - path: /sfia/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-sfia-engine-service
+            port:
+              number: 8001
+      - path: /rdf/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-rdf-service-service
+            port:
+              number: 8002
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-frontend-service
+            port:
+              number: 3000
+  - host: www.intellisfia.com
+    http:
+      paths:
+      - path: /api/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-api-gateway-service
+            port:
+              number: 8000
+      - path: /sfia/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-sfia-engine-service
+            port:
+              number: 8001
+      - path: /rdf/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-rdf-service-service
+            port:
+              number: 8002
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: intellisfia-frontend-service
+            port:
+              number: 3000
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: intellisfia-frontend-pdb
+  namespace: intellisfia
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: intellisfia-frontend
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: intellisfia-api-gateway-pdb
+  namespace: intellisfia
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: intellisfia-api-gateway
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: intellisfia-frontend-hpa
+  namespace: intellisfia
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: intellisfia-frontend
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: intellisfia-api-gateway-hpa
+  namespace: intellisfia
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: intellisfia-api-gateway
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80

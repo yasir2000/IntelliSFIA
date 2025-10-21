@@ -1,0 +1,331 @@
+version: '3.8'
+
+networks:
+  intellisfia:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  graphdb_data:
+  minio_data:
+  prometheus_data:
+  grafana_data:
+  elasticsearch_data:
+
+services:
+  # =============================================================================
+  # REVERSE PROXY & LOAD BALANCER
+  # =============================================================================
+  nginx:
+    image: nginx:alpine
+    container_name: intellisfia-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/html:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - api-gateway
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # FRONTEND APPLICATION
+  # =============================================================================
+  frontend:
+    build:
+      context: ../sfia_ai_framework/frontend
+      dockerfile: Dockerfile.prod
+    container_name: intellisfia-frontend
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=https://api.intellisfia.com
+      - REACT_APP_VERSION=${APP_VERSION:-1.0.0}
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # API GATEWAY
+  # =============================================================================
+  api-gateway:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: intellisfia-api
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://intellisfia:${DB_PASSWORD}@postgres:5432/intellisfia
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=${JWT_SECRET}
+      - OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET}
+      - CORS_ORIGINS=https://intellisfia.com,https://app.intellisfia.com
+    depends_on:
+      - postgres
+      - redis
+      - graphdb
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # SFIA PROCESSING ENGINE
+  # =============================================================================
+  sfia-engine:
+    build:
+      context: ../
+      dockerfile: deployment/dockerfiles/Dockerfile.sfia-engine
+    container_name: intellisfia-sfia-engine
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://intellisfia:${DB_PASSWORD}@postgres:5432/intellisfia
+      - REDIS_URL=redis://redis:6379/1
+      - RABBITMQ_URL=amqp://intellisfia:${RABBITMQ_PASSWORD}@rabbitmq:5672/
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8001/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # RDF KNOWLEDGE GRAPH SERVICE
+  # =============================================================================
+  rdf-service:
+    build:
+      context: ../
+      dockerfile: deployment/dockerfiles/Dockerfile.rdf-service
+    container_name: intellisfia-rdf
+    environment:
+      - ENVIRONMENT=production
+      - GRAPHDB_URL=http://graphdb:7200
+      - REDIS_URL=redis://redis:6379/2
+    depends_on:
+      - graphdb
+      - redis
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # DATABASES
+  # =============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: intellisfia-postgres
+    environment:
+      - POSTGRES_DB=intellisfia
+      - POSTGRES_USER=intellisfia
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U intellisfia"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: intellisfia-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  graphdb:
+    image: ontotext/graphdb:10.0.0
+    container_name: intellisfia-graphdb
+    environment:
+      - GDB_HEAP_SIZE=2g
+    volumes:
+      - graphdb_data:/opt/graphdb/home
+      - ./graphdb/import:/root/graphdb-import
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7200/rest/repositories"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # MESSAGE QUEUE
+  # =============================================================================
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: intellisfia-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=intellisfia
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    volumes:
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # FILE STORAGE
+  # =============================================================================
+  minio:
+    image: minio/minio:latest
+    container_name: intellisfia-minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ACCESS_KEY}
+      - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY}
+    volumes:
+      - minio_data:/data
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # MONITORING STACK
+  # =============================================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: intellisfia-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: intellisfia-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =============================================================================
+  # LOGGING STACK
+  # =============================================================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: intellisfia-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    container_name: intellisfia-logstash
+    volumes:
+      - ./logging/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    networks:
+      - intellisfia
+    restart: unless-stopped
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: intellisfia-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - intellisfia
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

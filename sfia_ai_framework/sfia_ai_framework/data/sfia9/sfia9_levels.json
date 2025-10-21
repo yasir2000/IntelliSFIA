@@ -1,0 +1,128 @@
+[
+  {
+    "level": 1,
+    "field": "Guiding phrase",
+    "content": "Follow",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 2,
+    "field": "Guiding phrase",
+    "content": "Assist",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 3,
+    "field": "Guiding phrase",
+    "content": "Apply",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 4,
+    "field": "Guiding phrase",
+    "content": "Enable",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 5,
+    "field": "Guiding phrase",
+    "content": "Ensure, advise",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 6,
+    "field": "Guiding phrase",
+    "content": "Initiate, influence",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 7,
+    "field": "Guiding phrase",
+    "content": "Set strategy, inspire, mobilise",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 1,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Performs routine tasks under close supervision, follows instructions, and requires guidance to complete their work. Learns and applies basic skills and knowledge.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 2,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Provides assistance to others, works under routine supervision, and uses their discretion to address routine problems. Actively learns through training and on-the-job experiences.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 3,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Performs varied tasks, sometimes complex and non-routine, using standard methods and procedures. Works under general direction, exercises discretion, and manages own work within deadlines. Proactively enhances skills and impact in the workplace.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 4,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Performs diverse complex activities, supports and guides others, delegates tasks when appropriate, works autonomously under general direction, and contributes expertise to deliver team objectives.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 5,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Provides authoritative guidance in their field and works under broad direction. Accountable for delivering significant work outcomes, from analysis through execution to evaluation.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 6,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Has significant organizational influence, makes high-level decisions, shapes policies, demonstrates leadership, promotes organizational collaboration, and accepts accountability in key areas.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 7,
+    "field": "Essence of the level",
+    "content": "Essence of the level: Operates at the highest organizational level, determines overall organizational vision and strategy, and assumes accountability for overall success.",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 1,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/1",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 2,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/2",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 3,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/3",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 4,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/4",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 5,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/5",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 6,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/6",
+    "sfia_version": "9.0"
+  },
+  {
+    "level": 7,
+    "field": "URL",
+    "content": "https://test.sfia-online.org/en-us/lor/9/7",
+    "sfia_version": "9.0"
+  }
+]
