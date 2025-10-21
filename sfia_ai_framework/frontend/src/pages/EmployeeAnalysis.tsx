@@ -21,7 +21,7 @@ import {
   ListItem,
   ListItemText,
   Paper,
-  Divider,
+
 } from '@mui/material';
 import {
   ExpandMore as ExpandMoreIcon,
@@ -62,7 +62,7 @@ const EmployeeAnalysis: React.FC = () => {
     analyzeEmployee(
       { employee_id: employeeId, analysis_type: analysisType },
       {
-        onSuccess: (data) => {
+        onSuccess: (data: any) => {
           setAnalysisResult(data as AnalysisResult);
         },
       }
@@ -111,7 +111,7 @@ const EmployeeAnalysis: React.FC = () => {
                 fullWidth
                 label="Employee ID"
                 value={employeeId}
-                onChange={(e) => setEmployeeId(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmployeeId(e.target.value)}
                 placeholder="e.g., EMP001, john.doe, 12345"
                 disabled={isLoading}
               />

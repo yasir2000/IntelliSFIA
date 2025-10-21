@@ -19,7 +19,7 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Divider,
+
   TextField,
   FormControl,
   InputLabel,
@@ -319,7 +319,7 @@ const PortfolioAssessment: React.FC = () => {
                       type="file"
                       hidden
                       accept=".json"
-                      onChange={(e) => handleFileUpload(e, 'portfolio')}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileUpload(e, 'portfolio')}
                     />
                   </Button>
                   {portfolioEntries.length > 0 && (
@@ -342,7 +342,7 @@ const PortfolioAssessment: React.FC = () => {
                       type="file"
                       hidden
                       accept=".json"
-                      onChange={(e) => handleFileUpload(e, 'supervisor')}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileUpload(e, 'supervisor')}
                     />
                   </Button>
                   {supervisorComments.length > 0 && (
@@ -356,7 +356,7 @@ const PortfolioAssessment: React.FC = () => {
                   fullWidth
                   label="Student Name"
                   value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setStudentName(e.target.value)}
                   sx={{ mb: 2 }}
                 />
 
@@ -364,7 +364,7 @@ const PortfolioAssessment: React.FC = () => {
                   fullWidth
                   label="Assessor Name"
                   value={assessorName}
-                  onChange={(e) => setAssessorName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAssessorName(e.target.value)}
                   sx={{ mb: 2 }}
                 />
 
@@ -374,7 +374,7 @@ const PortfolioAssessment: React.FC = () => {
                       fullWidth
                       label="Suggested SFIA Skill Code (Optional)"
                       value={suggestedSkill}
-                      onChange={(e) => setSuggestedSkill(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setSuggestedSkill(e.target.value)}
                       placeholder="e.g., DTAN, PROG, BUAN"
                     />
                   </Grid>
@@ -507,7 +507,7 @@ const PortfolioAssessment: React.FC = () => {
                   rows={4}
                   label="Activities Description"
                   value={activitiesDescription}
-                  onChange={(e) => setActivitiesDescription(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setActivitiesDescription(e.target.value)}
                   placeholder="Describe the student's activities, projects, and responsibilities..."
                   sx={{ mb: 2 }}
                 />
@@ -608,7 +608,7 @@ const PortfolioAssessment: React.FC = () => {
                       fullWidth
                       label="SFIA Skill Code"
                       value={suggestedSkill}
-                      onChange={(e) => setSuggestedSkill(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setSuggestedSkill(e.target.value)}
                       placeholder="e.g., DTAN, PROG, BUAN"
                     />
                   </Grid>
@@ -728,7 +728,7 @@ const PortfolioAssessment: React.FC = () => {
                       fullWidth
                       label="SFIA Skill Code"
                       value={suggestedSkill}
-                      onChange={(e) => setSuggestedSkill(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setSuggestedSkill(e.target.value)}
                       placeholder="e.g., DTAN, PROG, BUAN"
                     />
                   </Grid>

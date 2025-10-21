@@ -9,11 +9,6 @@ import {
   LinearProgress,
   Chip,
   Avatar,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -93,7 +88,7 @@ const COLORS = ['#667eea', '#764ba2', '#28a745', '#ffc107', '#dc3545'];
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { data: healthData, isLoading: healthLoading, refetch: refetchHealth } = useHealthCheck();
-  const { data: enterpriseStatus, isLoading: enterpriseLoading } = useEnterpriseStatus();
+  const { data: enterpriseStatus } = useEnterpriseStatus();
   const { data: organizationInsights, isLoading: insightsLoading } = useOrganizationInsights();
 
   const getStatusIcon = (status: string) => {

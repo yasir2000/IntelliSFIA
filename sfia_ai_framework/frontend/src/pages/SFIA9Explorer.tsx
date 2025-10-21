@@ -42,17 +42,6 @@ import {
 } from '@mui/icons-material';
 import { apiService } from '../services/api';
 
-interface SFIA9Attribute {
-  code: string;
-  name: string;
-  type: string;
-  description: string;
-  guidance_notes: string;
-  url?: string;
-  levels: string[];
-  level_descriptions: Record<string, string>;
-  sfia_version: string;
-}
 
 interface SFIA9Skill {
   code: string;
@@ -95,9 +84,7 @@ const SFIA9Explorer: React.FC = () => {
   
   // Detail dialogs
   const [selectedSkill, setSelectedSkill] = useState<SFIA9Skill | null>(null);
-  const [selectedAttribute, setSelectedAttribute] = useState<SFIA9Attribute | null>(null);
   const [skillDialogOpen, setSkillDialogOpen] = useState(false);
-  const [attributeDialogOpen, setAttributeDialogOpen] = useState(false);
   
   // Evidence assessment
   const [assessmentSkill, setAssessmentSkill] = useState('');

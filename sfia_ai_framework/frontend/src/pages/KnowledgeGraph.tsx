@@ -19,20 +19,12 @@ import {
   Chip,
   Alert,
   CircularProgress,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions
 } from '@mui/material';
 import {
-  ExpandMore as ExpandMoreIcon,
   Search as SearchIcon,
   AccountTree as AccountTreeIcon,
   DataObject as DataObjectIcon,
