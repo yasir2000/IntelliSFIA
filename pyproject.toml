@@ -1,16 +1,237 @@
-[tool.poetry]
-name = "sfia_rdf"
-version = "1.0.0"
-description = ""
-authors = ["mattecasu <matteo.casu@semanticpartners.com>"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0.0"
-rdflib = "^7.1.4"
-pytest = "^8.4.0"
-
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intellisfia"
+version = "1.0.0"
+description = "Intelligent SFIA Framework with Multi-LLM Support"
+authors = [
+    {name = "Yasir Ahmed", email = "yasir@intellisfia.com"},
+    {name = "Matteo Casu", email = "matteo.casu@semanticpartners.com"}
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+keywords = ["sfia", "rdf", "ai", "llm", "skills", "assessment"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    # Core dependencies
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "requests>=2.31.0",
+    "aiohttp>=3.9.0",
+    "python-multipart>=0.0.6",
+    
+    # RDF and semantic web
+    "rdflib>=7.0.0",
+    "owlrl>=6.0.2",
+    "sparqlwrapper>=2.0.0",
+    "pyshacl>=0.25.0",
+    
+    # Data processing
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "networkx>=3.1",
+    
+    # CLI and UI
+    "click>=8.1.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+    
+    # Utilities
+    "python-dotenv>=1.0.0",
+    "jinja2>=3.1.0",
+    "typing-extensions>=4.8.0",
+]
+
+[project.optional-dependencies]
+# Multi-LLM providers
+llm = [
+    "openai>=1.3.0",
+    "anthropic>=0.8.0",
+    "google-generativeai>=0.3.0",
+    "cohere>=4.37.0",
+    "azure-openai>=1.0.0",
+    "transformers>=4.30.0",
+    "torch>=2.0.0",
+    "ollama>=0.1.0",
+]
+
+# CrewAI multi-agent support
+crewai = [
+    "crewai>=0.41.0",
+    "crewai-tools>=0.8.0",
+    "langchain>=0.2.0",
+    "langchain-community>=0.2.0",
+    "langchain-ollama>=0.1.0",
+]
+
+# Development tools
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.4.0",
+    "bandit>=1.7.5",
+    "safety>=2.3.0",
+]
+
+# Documentation
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.2.0",
+    "mkdocstrings[python]>=0.23.0",
+]
+
+# Testing with external services
+test-integration = [
+    "docker>=6.1.0",
+    "testcontainers>=3.7.0",
+]
+
+# All optional dependencies
+all = [
+    "intellisfia[llm,crewai,dev,docs,test-integration]"
+]
+
+[project.urls]
+Homepage = "https://github.com/yasir2000/IntelliSFIA"
+Documentation = "https://intellisfia.readthedocs.io/"
+Repository = "https://github.com/yasir2000/IntelliSFIA"
+"Bug Tracker" = "https://github.com/yasir2000/IntelliSFIA/issues"
+
+[project.scripts]
+intellisfia = "intellisfia.cli:main"
+intellisfia-api = "intellisfia.api:main"
+sfia-convert = "intellisfia.sfia_converter:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+intellisfia = ["data/*.json", "data/*.ttl", "templates/*.html"]
+
+# Development tools configuration
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["intellisfia"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "crewai.*",
+    "langchain.*",
+    "ollama.*",
+    "openai.*",
+    "anthropic.*",
+    "google.*",
+    "cohere.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --cov=intellisfia --cov-report=term-missing --cov-report=html"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+    "llm: marks tests that require LLM providers",
+]
+
+[tool.coverage.run]
+source = ["src/intellisfia"]
+omit = [
+    "*/tests/*",
+    "*/examples/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.bandit]
+exclude_dirs = ["tests", "examples"]
+skips = ["B101", "B601"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "build",
+    "dist",
+    "*.egg-info",
+]
