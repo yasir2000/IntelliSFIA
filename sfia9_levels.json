@@ -1,0 +1,37 @@
+[
+  {
+    "level": 1,
+    "title": "Follow",
+    "description": "Works under close direction. Uses little discretion."
+  },
+  {
+    "level": 2,
+    "title": "Assist",
+    "description": "Works under general direction. Uses limited discretion."
+  },
+  {
+    "level": 3,
+    "title": "Apply",
+    "description": "Works under broad direction. Uses discretion in identifying and responding to complex issues."
+  },
+  {
+    "level": 4,
+    "title": "Enable",
+    "description": "Works under general direction within a clear framework. Influences others."
+  },
+  {
+    "level": 5,
+    "title": "Ensure/Advise",
+    "description": "Works under broad direction. Has significant influence over the allocation of resources."
+  },
+  {
+    "level": 6,
+    "title": "Initiate/Influence",
+    "description": "Determines policy and strategy. Has very significant influence."
+  },
+  {
+    "level": 7,
+    "title": "Set strategy/Inspire",
+    "description": "Has ultimate responsibility for strategy. Influences industry leaders."
+  }
+]

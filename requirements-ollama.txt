@@ -1,0 +1,19 @@
+# IntelliSFIA + Ollama Integration Requirements
+# ==========================================
+# This file lists the additional dependencies needed for local LLM integration
+
+# Core dependencies (already in main requirements)
+requests>=2.31.0
+pydantic>=2.0.0
+
+# Ollama integration (if using official Python client)
+# ollama>=0.1.0  # Optional: Official Ollama Python client
+
+# Additional AI/ML dependencies for enhanced features
+# torch>=2.0.0  # For local embeddings if needed
+# transformers>=4.30.0  # For local tokenization if needed
+# sentence-transformers>=2.2.0  # For semantic similarity
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

@@ -1,0 +1,27 @@
+[
+  {
+    "code": "AUTC",
+    "title": "Autonomy",
+    "description": "The ability to work independently and take responsibility for decisions."
+  },
+  {
+    "code": "INFC",
+    "title": "Influence",
+    "description": "The ability to persuade others and gain commitment to proposals."
+  },
+  {
+    "code": "CMPLX",
+    "title": "Complexity",
+    "description": "The ability to work with complex, ambiguous or contradictory situations."
+  },
+  {
+    "code": "KNOW",
+    "title": "Knowledge",
+    "description": "The knowledge and experience needed to perform effectively."
+  },
+  {
+    "code": "BUS_KNOW",
+    "title": "Business knowledge",
+    "description": "Understanding of the business context and commercial aspects."
+  }
+]
