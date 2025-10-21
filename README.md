@@ -2,6 +2,7 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Apache License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
+[![SFIA License](https://img.shields.io/badge/SFIA-License%20Required-red.svg)](SFIA_LICENSE_NOTE)
 [![Neo4j](https://img.shields.io/badge/Neo4j-5.15+-red.svg)](https://neo4j.com/)
 [![CrewAI](https://img.shields.io/badge/CrewAI-Enabled-orange.svg)](https://github.com/joaomdmoura/crewAI)
 [![Multi-LLM](https://img.shields.io/badge/Multi--LLM-Support-purple.svg)](#multi-llm-providers)
@@ -26,6 +27,47 @@ docker-compose -f deployment/docker-compose.prod.yml up -d
 # Kubernetes (Multi-Server)
 kubectl apply -f deployment/kubernetes/intellisfia-app.yaml
 ```
+
+## ⚖️ IMPORTANT: SFIA Licensing Requirements
+
+> **🚨 MANDATORY READING FOR ALL DEVELOPERS AND USERS**
+
+**SFIA (Skills Framework for the Information Age) is the intellectual property of The SFIA Foundation.** Any use of SFIA requires proper licensing and acknowledgment.
+
+### **📋 Licensing Summary**
+- ✅ **Personal & Educational Use**: Free of charge
+- ✅ **Small Organizations**: Free of charge  
+- ⚠️ **Large Organizations**: Modest licensing fees may apply
+- 💼 **Commercial Exploitation**: Licensing fees required
+
+### **🔗 Essential Documentation**
+- 📄 **[SFIA Licensing Details](SFIA_LICENSE_NOTE)** - **READ THIS FIRST**
+- 🌐 **[Official SFIA Registration](https://sfia-online.org/register)** - Required for usage
+- ⚖️ **[Full License Terms](https://sfia-online.org/license)** - Complete legal terms
+
+### **⚠️ Developer Obligations**
+When using this framework, you **MUST**:
+
+1. **📝 Acknowledge SFIA Foundation** in all publications/applications containing SFIA content
+2. **🔗 Register for SFIA License** at https://sfia-online.org/register
+3. **📖 Include Required Attribution**: 
+   ```
+   "This publication contains information from the Skills Framework 
+   for the Information Age with the permission of the SFIA Foundation."
+   ```
+4. **🚫 Prohibition**: Do NOT use SFIA to create rival frameworks
+5. **💼 Commercial Usage**: Contact SFIA Foundation for commercial licensing
+
+### **🚨 Legal Compliance**
+- **Copyright**: All SFIA content remains property of The SFIA Foundation
+- **Distribution**: Reproduction requires explicit permission
+- **Attribution**: Must acknowledge SFIA Foundation in all derived works
+- **Non-Competition**: Cannot be used to create competing frameworks
+
+**📞 Contact SFIA Foundation**: For licensing questions or commercial usage  
+**🌐 Official Website**: https://www.sfia-online.org/
+
+---
 
 ## 🌟 Key Features
 
@@ -329,9 +371,28 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - 🐦 **Follow** us on [Twitter](https://twitter.com/intellisfia)
 - 💼 **Connect** on [LinkedIn](https://linkedin.com/company/intellisfia)
 
-## 📝 License
+## 📝 License & Legal
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+### **Project License**
+This project's code is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+### **SFIA Framework License** 
+⚠️ **CRITICAL**: The SFIA (Skills Framework for the Information Age) content used in this project is the intellectual property of **The SFIA Foundation** and requires separate licensing:
+
+- 📄 **[Read SFIA License Requirements](SFIA_LICENSE_NOTE)** - Mandatory for all users
+- 🌐 **[Register for SFIA License](https://sfia-online.org/register)** - Free for most users
+- ⚖️ **[Full Legal Terms](https://sfia-online.org/license)** - Complete licensing details
+
+### **Attribution Requirements**
+This publication contains information from the Skills Framework for the Information Age with the permission of the SFIA Foundation.
+
+### **Developer Notice**
+- **For Personal/Educational Use**: Free SFIA license available
+- **For Commercial Use**: Contact SFIA Foundation for licensing terms
+- **For Large Organizations**: Licensing fees may apply
+- **Distribution**: Must include SFIA attribution and licensing notice
+
+**🚨 Compliance Responsibility**: Users must ensure they have appropriate SFIA licensing for their use case.
 
 ## 🙏 Acknowledgments
 
