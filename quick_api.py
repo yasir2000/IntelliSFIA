@@ -105,8 +105,8 @@ async def get_docs():
 if __name__ == "__main__":
     print("Starting IntelliSFIA Production API Server")
     print("=" * 50)
-    print("• API Server: http://localhost:8001")
-    print("• API Docs:   http://localhost:8001/docs")
-    print("• Health:     http://localhost:8001/health")
+    print("• API Server: http://localhost:8000")
+    print("• API Docs:   http://localhost:8000/docs")
+    print("• Health:     http://localhost:8000/health")
     
-    uvicorn.run(app, host="0.0.0.0", port=8001, log_level="info")
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
