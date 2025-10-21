@@ -1,0 +1,133 @@
+name: Documentation Issue
+description: Report an issue with documentation
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Good documentation is essential for project success.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation is this about?
+      options:
+        - README
+        - API Documentation
+        - User Guide
+        - Installation Guide
+        - Developer Documentation
+        - Code Comments
+        - Deployment Documentation
+        - Security Documentation
+        - Contributing Guidelines
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue Description
+      description: What's wrong with the documentation?
+      placeholder: |
+        Examples:
+        - Information is outdated
+        - Steps don't work as described
+        - Missing information
+        - Confusing or unclear explanation
+        - Broken links
+        - Typos or grammatical errors
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Where is this documentation located?
+      placeholder: e.g., README.md line 45, docs/api/authentication.md, or URL
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current Content
+      description: What does the documentation currently say? (Copy/paste the problematic section)
+
+  - type: textarea
+    id: expected-content
+    attributes:
+      label: Expected Content
+      description: What should the documentation say instead?
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this documentation issue?
+      options:
+        - Low - Minor typo or formatting
+        - Medium - Confusing but workaround exists
+        - High - Misleading or incorrect information
+        - Critical - Blocks users from completing tasks
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: Affected User Type
+      description: Which users are most affected by this issue?
+      options:
+        - New Users
+        - Experienced Users
+        - Developers
+        - System Administrators
+        - All Users
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-attempted
+    attributes:
+      label: Steps Attempted
+      description: If this is about instructions that don't work, what steps did you try?
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        If relevant, what environment are you using?
+        - OS:
+        - Browser:
+        - Version:
+        - Deployment type:
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix
+      description: Do you have suggestions for how to fix this documentation issue?
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples about the documentation issue here.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: By submitting this documentation issue, you confirm that
+      options:
+        - label: I have searched for existing documentation issues before creating this one
+          required: true
+        - label: I have checked if this documentation exists in multiple locations
+          required: false
+        - label: I am willing to help improve the documentation if needed
+          required: false

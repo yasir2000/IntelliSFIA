@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/yasir2000/IntelliSFIA/discussions
+    about: Ask questions, share ideas, and discuss IntelliSFIA with the community
+  
+  - name: 📚 Documentation
+    url: https://github.com/yasir2000/IntelliSFIA/wiki
+    about: Check our comprehensive documentation and guides
+  
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/yasir2000/IntelliSFIA/security/advisories/new
+    about: Report security vulnerabilities privately
+  
+  - name: 💼 Enterprise Support
+    url: https://github.com/yasir2000/IntelliSFIA/discussions/categories/support
+    about: Contact us for enterprise support and custom solutions
