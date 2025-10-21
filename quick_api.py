@@ -33,8 +33,9 @@ class ChatResponse(BaseModel):
     model: str
     provider: str
 
-# Ollama client
-OLLAMA_BASE_URL = "http://localhost:11434"
+# Ollama client - use environment variable or default to container name
+import os
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
 
 @app.get("/health")
 async def health_check():
